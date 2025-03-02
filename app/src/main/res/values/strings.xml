@@ -1,0 +1,12 @@
+<resources>
+    <!-- GET GTART TO LOGIN -->
+    <string name="app_name">CVERDETOTOO</string>
+    <string name="getstartbtn">\n</string>
+    <string name="Email_Uname">Email/Username</string>
+    <string name="getstart">Click anywhere to start!</string>
+    <string name="Password">Password</string>
+    <string name="forgotpassword">Forgot Password</string>
+    <string name="login">Login</string>
+    <string name="reg">New to C-Verde? SignUp</string>
+    <string name="logo">\n</string>
+</resources>
