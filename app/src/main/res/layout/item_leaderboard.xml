@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:padding="8dp"
+    android:background="@drawable/green">
+
+
+<TextView
+android:id="@+id/tvRank"
+android:layout_width="wrap_content"
+android:layout_height="wrap_content"
+android:text="4"
+android:textSize="16sp"
+android:textStyle="bold"
+android:textColor="@android:color/white"
+    android:layout_gravity="center_vertical"
+    android:layout_marginEnd="8dp"/>
+
+
+<ImageView
+android:id="@+id/ivAvatar"
+android:layout_width="48dp"
+android:layout_height="48dp"
+android:src="@drawable/muser"
+android:layout_gravity="center_vertical"
+android:layout_marginEnd="8dp"/>
+
+
+<LinearLayout
+android:layout_width="0dp"
+android:layout_height="wrap_content"
+android:layout_weight="1"
+    android:orientation="vertical"
+    android:gravity="center_vertical">
+
+<TextView
+android:id="@+id/tvName"
+android:layout_width="wrap_content"
+android:layout_height="wrap_content"
+android:text="Celine"
+android:textStyle="bold"
+android:textColor="@android:color/white"
+android:textSize="16sp" />
+
+<TextView
+android:id="@+id/tvRankTitle"
+android:layout_width="wrap_content"
+android:layout_height="wrap_content"
+android:text="Eco Leader"
+android:textColor="@android:color/white"
+android:textSize="14sp" />
+    </LinearLayout>
+
+    <!-- Points on the far-right -->
+<TextView
+android:id="@+id/tvPoints"
+android:layout_width="wrap_content"
+android:layout_height="wrap_content"
+android:text="950 points"
+android:textColor="@android:color/white"
+android:layout_gravity="center_vertical"
+android:layout_marginStart="8dp"/>
+    </LinearLayout>

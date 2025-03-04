@@ -1,0 +1,12 @@
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="oval">
+
+    <!-- The fill inside the circle (light blue for example) -->
+    <solid android:color="#FF2196F3" /> <!-- Change to your preferred color -->
+
+    <!-- The green stroke around the circle -->
+    <stroke
+        android:width="10dp"
+        android:color="#00FF11" /> <!-- Adjust stroke color if needed -->
+
+</shape>
