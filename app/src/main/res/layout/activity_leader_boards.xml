@@ -38,7 +38,7 @@
                 android:layout_centerInParent="true"
                 android:text="LEADERBOARD"
                 android:textSize="30sp"
-                android:fontFamily="@font/poppins_bold_family"
+                android:fontFamily="@font/poppins_bold"
                 android:textStyle="bold"
                 android:textColor="@android:color/white" />
 
