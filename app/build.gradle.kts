@@ -79,6 +79,7 @@ dependencies {
 
     // Charting Library
     implementation("com.github.PhilJay:MPAndroidChart:3.1.0")
+    implementation(libs.navigation.fragment)
 
     // Testing dependencies
     testImplementation(libs.junit)

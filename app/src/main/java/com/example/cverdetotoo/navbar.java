@@ -22,7 +22,7 @@ public class navbar extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main); // Make sure this layout contains fragment_container and bottom_navigation
+        setContentView(R.layout.activity_navbar2); // Layout must include fragment_container and bottom_navigation
 
         bottomNavigationView = findViewById(R.id.bottom_navigation);
 
@@ -33,6 +33,7 @@ public class navbar extends AppCompatActivity {
 
         bottomNavigationView.setOnItemSelectedListener(item -> {
             int itemId = item.getItemId();
+            // Avoid reloading the same fragment.
             if (!fragmentStack.isEmpty() && fragmentStack.peek() == itemId) {
                 return true;
             }
@@ -51,30 +52,27 @@ public class navbar extends AppCompatActivity {
             if (selectedFragment != null) {
                 loadFragment(selectedFragment, itemId);
             }
+            // Optionally, call highlightSelectedItem(itemId) here.
             return true;
         });
 
-        // Check if the user qualifies for the discount popup.
         checkForDiscountPopup();
     }
 
-    // Removed the extra loadFragment overload that was causing issues.
     private void loadFragment(Fragment fragment, int itemId) {
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.fragment_container, fragment)
                 .commit();
 
-        // Add the selected fragment to the stack (avoid duplicates).
-        if (!fragmentStack.isEmpty() && fragmentStack.peek() == itemId) {
-            return;
+        if (fragmentStack.isEmpty() || fragmentStack.peek() != itemId) {
+            fragmentStack.push(itemId);
         }
-        fragmentStack.push(itemId);
     }
 
     @Override
     public void onBackPressed() {
         if (fragmentStack.size() > 1) {
-            fragmentStack.pop(); // Remove the current fragment.
+            fragmentStack.pop(); // Remove current fragment.
             int previousItemId = fragmentStack.peek();
 
             Fragment previousFragment = null;
@@ -99,9 +97,6 @@ public class navbar extends AppCompatActivity {
         }
     }
 
-    /**
-     * Creates a LayerDrawable consisting of a green circle background and the original icon (tinted white) on top.
-     */
     private Drawable getGreenCircleIcon(int iconResId) {
         GradientDrawable circle = new GradientDrawable();
         circle.setShape(GradientDrawable.OVAL);
@@ -116,41 +111,13 @@ public class navbar extends AppCompatActivity {
 
         Drawable[] layers = new Drawable[]{circle, icon};
         LayerDrawable layerDrawable = new LayerDrawable(layers);
-
         layerDrawable.setLayerGravity(0, Gravity.CENTER);
         layerDrawable.setLayerGravity(1, Gravity.CENTER);
 
         return layerDrawable;
     }
 
-    /**
-     * Highlights the selected BottomNavigationView menu item with a green circle icon
-     * and resets the others to their default icons.
-     */
-    private void highlightSelectedItem(int selectedItemId) {
-        // Reset all icons to their default state.
-        bottomNavigationView.getMenu().findItem(R.id.nav_home).setIcon(R.drawable.home);
-        bottomNavigationView.getMenu().findItem(R.id.nav_game).setIcon(R.drawable.game);
-        bottomNavigationView.getMenu().findItem(R.id.nav_rank).setIcon(R.drawable.podium);
-        bottomNavigationView.getMenu().findItem(R.id.nav_profile).setIcon(R.drawable.nuser);
-
-        // Set the selected icon to the green circle version.
-        if (selectedItemId == R.id.nav_home) {
-            bottomNavigationView.getMenu().findItem(R.id.nav_home)
-                    .setIcon(getGreenCircleIcon(R.drawable.home));
-        } else if (selectedItemId == R.id.nav_game) {
-            bottomNavigationView.getMenu().findItem(R.id.nav_game)
-                    .setIcon(getGreenCircleIcon(R.drawable.game));
-        } else if (selectedItemId == R.id.nav_rank) {
-            bottomNavigationView.getMenu().findItem(R.id.nav_rank)
-                    .setIcon(getGreenCircleIcon(R.drawable.podium));
-        } else if (selectedItemId == R.id.nav_profile) {
-            bottomNavigationView.getMenu().findItem(R.id.nav_profile)
-                    .setIcon(getGreenCircleIcon(R.drawable.nuser));
-        }
-    }
-
     private void checkForDiscountPopup() {
-        // Implement discount popup check logic here.
+        // Implement your discount popup logic here.
     }
 }

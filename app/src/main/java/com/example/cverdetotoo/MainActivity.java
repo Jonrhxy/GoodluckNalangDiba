@@ -18,7 +18,9 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().hide();
+        }
         // Check if user is logged in
         SharedPreferences sharedPreferences = getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
         boolean isLoggedIn = sharedPreferences.getBoolean(PREF_IS_LOGGED_IN, false);
@@ -37,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
         // Initialize and set up "Get Started" button
         getstartbtn = findViewById(R.id.getstartbtn);
         getstartbtn.setOnClickListener(v -> {
-            Intent intent = new Intent(MainActivity.this, Signin.class);
+            Intent intent = new Intent(MainActivity.this, navbar.class);
             startActivity(intent);
         });
 

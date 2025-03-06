@@ -9,4 +9,51 @@
     <string name="login">Login</string>
     <string name="reg">New to C-Verde? SignUp</string>
     <string name="logo">\n</string>
+
+    <!-- HOMEPAGE -->
+    <string name="vid">Videos</string>
+    <string name="trivia">Trivia</string>
+    <string name="trivia1">Carbon Footprint</string>
+    <string name="trivia2">CO₂ Emissions</string>
+    <string name="home">Home</string>
+    <string name="welcomee">Hey there, dive into epic videos, \nuncover cool trivia, \nand crush your goals to \nscore big points today!</string>
+    <string name="trivia3">"Carbon-Negative \nNation "</string>
+    <string name="trivia4">The Power of \nPlant-Based \nEating</string>
+    <string name="username">Username</string>
+    <string name="closestory">\n</string>
+    <string name="logo_description">\n</string>
+    <string name="instrucpreassess">This pre-assessment checks your prior knowledge with no time limit and <b><u>won’t affect your final score.</u></b> Click \"Start\" when ready.</string>
+    <string name="start">Start</string>
+    <string name="instruc">INSTRUCTIONS:</string>
+    <string name="preqeus1">What is love?</string>
+    <string name="timer1">00:00</string>
+    <string name="timee">\n</string>
+    <string name="guideRB">Choose 1 to continue.</string>
+    <string name="preQ11a">Secret</string>
+    <string name="preQ11b">\'Di ko alam</string>
+    <string name="preQ11c">Sanaol</string>
+    <string name="preQ11d">bading si hans</string>
+    <string name="submit">Submit</string>
+    <string name="preQ12a">asddad</string>
+    <string name="preQ12b">fdfsfs</string>
+    <string name="preQ12d">adsad</string>
+    <string name="preQ12c">asdad</string>
+    <string name="next">NEXT</string>
+    <string name="WD">Well Done!</string>
+    <string name="pre1scoress">Your score is:</string>
+    <string name="pre1score">5/5 points</string>
+    <string name="prenote">Great job!  Your responses show you\'re beginning to understand how everyday choices affect our environment. Now, click \'Next\' to watch the following educational video and discover more strategies for reducing your carbon footprint.</string>
+
+
+    <string name="Firstname">Firstname</string>
+    <string name="Lastname">Lastname</string>
+    <string name="Username">Username</string>
+    <string name="Email">Email</string>
+    <string name="student_id">Student Number</string>
+    <string name="Confirmpassword">Confirm Password</string>
+    <string name="I_agree_to_the_Terms_and_Conditions">I Agree to the Terms And Conditions</string>
+    <string name="terms_conditions_description">I Agree to the Terms And Condition</string>
+    <string name="SignUp">SIGNUP</string>
+    <string name="Do_have_an_account_Login"><b><i>Already have an account? Login</i></b></string>
+
 </resources>

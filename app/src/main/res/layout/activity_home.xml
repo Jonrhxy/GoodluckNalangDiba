@@ -1,15 +1,298 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:gravity="center"
-    android:orientation="vertical">
+    android:layout_height="match_parent">
 
-    <TextView
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:id="@+id/homepageM"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Welcome to Home Activity!"
-        android:textSize="24sp"/>
+        android:orientation="vertical"
+        android:background="@drawable/homeblue">
 
-</LinearLayout>
+        <!-- Top container with gradient background -->
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            android:background="@drawable/mainbg1">
+
+            <!-- "Home" title (or could be an AppBar) -->
+            <TextView
+                android:id="@+id/tvHomeTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="25dp"
+                android:layout_marginTop="25dp"
+                android:text="@string/home"
+                android:textColor="@color/white"
+                android:textSize="30sp"
+                android:fontFamily="@font/poppins_bold"/>
+
+            <!-- A small welcome message -->
+            <TextView
+                android:id="@+id/tvWelcome"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:layout_marginBottom="80dp"
+                android:layout_marginStart="20dp"
+                android:fontFamily="@font/poppins_semibold_italic"
+                android:text="@string/welcomee"
+                android:textColor="@color/white"
+                android:textSize="14sp"
+                android:layout_marginTop="45dp"/>
+
+            <!-- Character or mascot image aligned to the right -->
+            <ImageView
+                android:id="@+id/ivMascot"
+                android:layout_width="250dp"
+                android:layout_height="250dp"
+                android:layout_marginTop="24dp"
+                android:paddingStart="20dp"
+                android:layout_gravity="end|center_vertical"
+                android:contentDescription="@string/app_name"
+                android:src="@drawable/boychar"
+                android:adjustViewBounds="true"/>
+        </FrameLayout>
+
+        <!-- Videos Section -->
+        <TextView
+            android:id="@+id/tvVideos"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginBottom="8dp"
+            android:text="@string/vid"
+            android:textSize="26sp"
+            android:textStyle="bold"
+            android:textColor="#FFF3F6" />
+
+        <!-- Horizontal ScrollView for video items -->
+        <HorizontalScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:clipToPadding="false"
+            android:scrollbars="none">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <!-- VIDEO 1 -->
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/vid1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="16dp"
+                    android:clickable="true"
+                    android:focusable="true"
+                    app:cardCornerRadius="8dp"
+                    app:cardUseCompatPadding="true"
+                    android:layout_marginBottom="8dp">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/vid1pic" />
+                </androidx.cardview.widget.CardView>
+
+                <!-- VIDEO 2 -->
+                <androidx.cardview.widget.CardView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="16dp"
+                    android:clickable="true"
+                    android:focusable="true"
+                    app:cardCornerRadius="8dp"
+                    app:cardUseCompatPadding="true"
+                    android:layout_marginBottom="8dp">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/vid2pic" />
+                </androidx.cardview.widget.CardView>
+
+                <!-- Add more cards as needed -->
+            </LinearLayout>
+        </HorizontalScrollView>
+
+        <!-- Trivia Section -->
+        <TextView
+            android:id="@+id/tvTrivia"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="88dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginBottom="18dp"
+            android:text="@string/trivia"
+            android:textSize="26sp"
+            android:textStyle="bold"
+            android:textColor="#FFF3F6" />
+
+        <LinearLayout
+            android:id="@+id/Trivia1and2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_gravity="center">
+
+            <!-- trivia card 1 -->
+            <androidx.cardview.widget.CardView
+                android:id="@+id/trivia1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
+                android:clickable="true"
+                android:focusable="true"
+                app:cardCornerRadius="8dp"
+                app:cardUseCompatPadding="true"
+                android:layout_marginBottom="8dp">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/trivia1" />
+            </androidx.cardview.widget.CardView>
+
+            <!-- trivia card 2 -->
+            <androidx.cardview.widget.CardView
+                android:id="@+id/trivia2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:clickable="true"
+                android:focusable="true"
+                app:cardCornerRadius="8dp"
+                app:cardUseCompatPadding="true"
+                android:layout_marginBottom="8dp">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/trivia2" />
+            </androidx.cardview.widget.CardView>
+        </LinearLayout>
+
+        <!-- Trivia names for cards 1 & 2 -->
+        <LinearLayout
+            android:id="@+id/Trivia1and2Text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="28dp"
+            android:layout_gravity="center">
+
+            <TextView
+                android:id="@+id/Trivia1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="28dp"
+                android:layout_marginBottom="18dp"
+                android:text="@string/trivia1"
+                android:textSize="21sp"
+                android:textStyle="bold"
+                android:textColor="#FFF3F6" />
+
+            <TextView
+                android:id="@+id/Trivia2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="38dp"
+                android:text="@string/trivia2"
+                android:textSize="21sp"
+                android:textStyle="bold"
+                android:textColor="#FFF3F6" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/Trivia3and4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_gravity="center">
+
+            <!-- trivia card 3 -->
+            <androidx.cardview.widget.CardView
+                android:id="@+id/trivia3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
+                android:clickable="true"
+                android:focusable="true"
+                app:cardCornerRadius="8dp"
+                app:cardUseCompatPadding="true"
+                android:layout_marginBottom="8dp">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/trivia3" />
+            </androidx.cardview.widget.CardView>
+
+            <!-- trivia card 4 -->
+            <androidx.cardview.widget.CardView
+                android:id="@+id/trivia4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:clickable="true"
+                android:focusable="true"
+                app:cardCornerRadius="8dp"
+                app:cardUseCompatPadding="true"
+                android:layout_marginBottom="8dp">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/trivia4" />
+            </androidx.cardview.widget.CardView>
+        </LinearLayout>
+
+        <!-- Trivia names for cards 3 & 4 -->
+        <LinearLayout
+            android:id="@+id/Trivia3and4Text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="28dp"
+            android:layout_gravity="center">
+
+            <TextView
+                android:id="@+id/Trivia3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="28dp"
+                android:layout_marginBottom="18dp"
+                android:gravity="center_horizontal"
+                android:text="@string/trivia3"
+                android:textSize="21sp"
+                android:textStyle="bold"
+                android:textColor="#FFF3F6" />
+
+            <TextView
+                android:id="@+id/Trivia4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="38dp"
+                android:gravity="center_horizontal"
+                android:text="@string/trivia4"
+                android:textSize="21sp"
+                android:textStyle="bold"
+                android:textColor="#FFF3F6" />
+        </LinearLayout>
+
+        <!-- Add any other sections you need -->
+
+    </LinearLayout>
+</ScrollView>

@@ -24,6 +24,7 @@ imageLabelingDefaultCommon = "17.0.0"
 playServicesLocation = "21.3.0"
 firebaseStorage = "21.0.1"
 firebaseMessaging = "24.1.0"
+navigationFragment = "2.8.8"
 
 [libraries]
 junit = { group = "junit", name = "junit", version.ref = "junit" }
@@ -49,6 +50,7 @@ firebase-bom = { module = "com.google.firebase:firebase-bom", version.ref = "fir
 mlkit-image-labeling = { module = "com.google.mlkit:image-labeling", version.ref = "mlkit-image-labeling" }
 firebase-storage = { group = "com.google.firebase", name = "firebase-storage", version.ref = "firebaseStorage" }
 firebase-messaging = { group = "com.google.firebase", name = "firebase-messaging", version.ref = "firebaseMessaging" }
+navigation-fragment = { group = "androidx.navigation", name = "navigation-fragment", version.ref = "navigationFragment" }
 
 
 [plugins]

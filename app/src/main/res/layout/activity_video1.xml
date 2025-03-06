@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/story_container"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#000000"
+    tools:context=".video1">
+
+    <!-- Story Content (Video) -->
+    <VideoView
+        android:id="@+id/story_video"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <!-- Top Overlay for Controls -->
+    <LinearLayout
+        android:id="@+id/top_overlay"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp"
+        android:layout_gravity="top">
+
+        <!-- Add any progress indicators or user info here -->
+
+        <ImageButton
+            android:id="@+id/close_button"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:src="@android:drawable/btn_plus"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="Close Story" />
+    </LinearLayout>
+</FrameLayout>

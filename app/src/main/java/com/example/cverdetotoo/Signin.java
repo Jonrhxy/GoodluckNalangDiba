@@ -49,7 +49,9 @@ public class Signin extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().hide();
+        }
         sharedPreferences = getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
         boolean isLoggedIn = sharedPreferences.getBoolean(PREF_IS_LOGGED_IN, false);
 
