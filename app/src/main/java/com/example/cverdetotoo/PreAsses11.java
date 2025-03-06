@@ -42,10 +42,10 @@ public class PreAsses11 extends AppCompatActivity {
         score = getIntent().getIntExtra("score", 0);
 
         // Initialize views
+        timerTextView = findViewById(R.id.timer21);  // Initialize timer TextView
         radioGroup = findViewById(R.id.radiopreQ11);
         submitButton = findViewById(R.id.preq11);
         next11Button = findViewById(R.id.next11);
-        timerTextView = findViewById(R.id.timer11); // Ensure you add this TextView in your XML layout
 
         // Disable the next button until an answer is submitted
         next11Button.setEnabled(false);

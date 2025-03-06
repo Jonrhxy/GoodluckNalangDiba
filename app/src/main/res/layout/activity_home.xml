@@ -105,6 +105,7 @@
 
                 <!-- VIDEO 2 -->
                 <androidx.cardview.widget.CardView
+                    android:id="@+id/vid2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="16dp"
@@ -214,6 +215,7 @@
                 android:textColor="#FFF3F6" />
         </LinearLayout>
 
+        <!-- trivia card 3&4 -->
         <LinearLayout
             android:id="@+id/Trivia3and4"
             android:layout_width="wrap_content"

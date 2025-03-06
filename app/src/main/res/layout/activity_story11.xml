@@ -15,6 +15,7 @@
         android:progress="0"
         android:progressTint="@color/WBlue" />
 
+
     <!-- ViewPager2 for swiping through stories -->
     <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/viewPagerStories"

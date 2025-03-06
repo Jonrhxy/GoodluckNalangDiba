@@ -32,7 +32,7 @@
                 app:srcCompat="@drawable/timer"/>
 
             <TextView
-                android:id="@+id/timer11"
+                android:id="@+id/timer21"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"

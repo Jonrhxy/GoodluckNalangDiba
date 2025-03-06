@@ -70,7 +70,7 @@
         <!-- Additional Note -->
 
         <TextView
-            android:id="@+id/wtgm"
+            android:id="@+id/wtgm1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="6dp"

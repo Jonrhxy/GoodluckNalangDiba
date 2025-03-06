@@ -17,14 +17,13 @@ public class PreAssess1 extends AppCompatActivity {
         }
         setContentView(R.layout.activity_pre_assess1);
 
-        // Find the button by its id
+        // Find the button by its ID
         Button startButton = findViewById(R.id.prebtnstart1);
 
-        // Set an OnClickListener on the button
+        // Set an OnClickListener on the button to start PreAsses11 activity
         startButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // Create an Intent to start PreAsses11.class
                 Intent intent = new Intent(PreAssess1.this, PreAsses11.class);
                 startActivity(intent);
             }

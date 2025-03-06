@@ -1,29 +1,34 @@
 package com.example.cverdetotoo;
-
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.view.MotionEvent;
 import android.widget.ProgressBar;
+
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.viewpager.widget.ViewPager;
 import androidx.viewpager2.widget.ViewPager2;
+
+import com.example.cverdetotoo.R;
+
 import java.util.ArrayList;
 import java.util.List;
 
-public class StoryActivity12 extends AppCompatActivity {
+public class StoryActivity33 extends AppCompatActivity {
+
     private ViewPager2 viewPager2;
     private StoryAdapter storyAdapter;
     private CountDownTimer countDownTimer;
     private long remainingTime;
     private ProgressBar progressBar;
-    private static final long STORY_DURATION = 5000; // 5 seconds per story
+    private static final long STORY_DURATION = 5000; //
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_story12);
+        setContentView(R.layout.activity_story22);
 
-        viewPager2 = findViewById(R.id.viewPagerStories12);
-        progressBar = findViewById(R.id.progressBar12);
+        viewPager2 = findViewById(R.id.viewPagerStories22);
+        progressBar = findViewById(R.id.progressBar22);
 
         // Set up the progress bar max and initial progress
         progressBar.setMax((int) STORY_DURATION);
@@ -31,11 +36,11 @@ public class StoryActivity12 extends AppCompatActivity {
 
         // Create a list of local image resource IDs (ensure these images exist in res/drawable)
         List<Integer> storyImages = new ArrayList<>();
-        storyImages.add(R.drawable.trivia11);
-        storyImages.add(R.drawable.trivia12);
-        storyImages.add(R.drawable.trivia13);
-        storyImages.add(R.drawable.trivia14);
-        storyImages.add(R.drawable.trivia15);
+        storyImages.add(R.drawable.trivia31);
+        storyImages.add(R.drawable.trivia32);
+        storyImages.add(R.drawable.trivia33);
+        storyImages.add(R.drawable.trivia34);
+        storyImages.add(R.drawable.trivia35);
 
         // Set up the adapter with the local images and attach it to the ViewPager2
         storyAdapter = new StoryAdapter(this, storyImages);
@@ -108,3 +113,5 @@ public class StoryActivity12 extends AppCompatActivity {
         }
     }
 }
+
+

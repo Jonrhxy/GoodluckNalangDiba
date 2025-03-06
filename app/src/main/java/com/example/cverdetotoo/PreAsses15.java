@@ -24,8 +24,6 @@ import java.util.Map;
 public class PreAsses15 extends AppCompatActivity {
     // Variable to track the score
     private int score = 0;
-    // Variable to store the selected answer text
-    private String selectedAnswer = "";
 
     // Timer-related variables
     private static final long TOTAL_TIME = 20000; // 20 seconds in milliseconds
@@ -33,10 +31,11 @@ public class PreAsses15 extends AppCompatActivity {
     private TextView timerTextView;
 
     // The correct answer is assumed to be prebtn1d
-    private int correctAnswerId = R.id.prebtn1d;
+    private int correctAnswerId = R.id.prebtn1b;
     private RadioGroup radioGroup;
     private Button submitButton, next11Button;
     private boolean answered = false;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,44 +53,52 @@ public class PreAsses15 extends AppCompatActivity {
         radioGroup = findViewById(R.id.radiopreQ15);
         submitButton = findViewById(R.id.preq15);
         next11Button = findViewById(R.id.next15);
-        timerTextView = findViewById(R.id.timer15);
+        timerTextView = findViewById(R.id.timer15); // Ensure you add this TextView in your XML layout
 
-        // Disable the Next button until an answer is submitted
+        // Disable the next button until an answer is submitted
         next11Button.setEnabled(false);
 
         // Start the 20-second timer
         startTimer();
 
-        // Set listener for the Submit button click
+        // Set listener for the submit button click
         submitButton.setOnClickListener(v -> {
             if (!answered) {
                 int selectedId = radioGroup.getCheckedRadioButtonId();
+
                 if (selectedId == -1) {
+                    // No answer selected
                     Toast.makeText(PreAsses15.this, "Please select an answer", Toast.LENGTH_SHORT).show();
                     return;
                 }
-                // Capture the selected answer text
-                RadioButton selectedRadioButton = findViewById(selectedId);
-                selectedAnswer = selectedRadioButton.getText().toString();
+
                 // Cancel the timer
                 countDownTimer.cancel();
-                // Reset radio button colors in case user is retrying
+
+                // Reset the colors of all radio buttons (in case user is retrying)
                 resetRadioButtonColors(radioGroup);
+
                 if (selectedId == correctAnswerId) {
+                    // Correct answer: update the selected radio button color to green
+                    RadioButton selectedRadioButton = findViewById(selectedId);
                     selectedRadioButton.setTextColor(Color.GREEN);
                     selectedRadioButton.setButtonTintList(ColorStateList.valueOf(Color.GREEN));
                     Toast.makeText(PreAsses15.this, "Correct!", Toast.LENGTH_SHORT).show();
                     score++;  // Increase score
                 } else {
+                    // Wrong answer: mark the selected radio button red
+                    RadioButton selectedRadioButton = findViewById(selectedId);
                     selectedRadioButton.setTextColor(Color.RED);
                     selectedRadioButton.setButtonTintList(ColorStateList.valueOf(Color.RED));
+
                     // Also highlight the correct answer in green
                     RadioButton correctRadioButton = findViewById(correctAnswerId);
                     correctRadioButton.setTextColor(Color.GREEN);
                     correctRadioButton.setButtonTintList(ColorStateList.valueOf(Color.GREEN));
                     Toast.makeText(PreAsses15.this, "Incorrect!", Toast.LENGTH_SHORT).show();
                 }
-                // Mark as answered, disable further selections, disable submit button and enable Next button
+
+                // Mark as answered, disable further selections, and enable next button
                 answered = true;
                 disableRadioGroup();
                 submitButton.setEnabled(false);
@@ -99,35 +106,16 @@ public class PreAsses15 extends AppCompatActivity {
             }
         });
 
-        // Set listener for the Next button click to store result in Firestore and move to the next activity
+        // Set listener for the next11 button click to redirect to PreAsses12.class
         next11Button.setOnClickListener(v -> {
-            if (!answered) {
+            // Only proceed if answer has been submitted
+            if (answered) {
+                Intent intent = new Intent(PreAsses15.this, PreAssess1After.class);
+                intent.putExtra("score", score);  // Passing the cumulative score to the next activity
+                startActivity(intent);
+            } else {
                 Toast.makeText(PreAsses15.this, "Please submit your answer first", Toast.LENGTH_SHORT).show();
-                return;
             }
-            // Fetch the correct answer's text for storing
-            RadioButton correctRadioButton = findViewById(correctAnswerId);
-            String correctAnswerText = correctRadioButton.getText().toString();
-            // Create a Firestore instance
-            FirebaseFirestore db = FirebaseFirestore.getInstance();
-            // Prepare data to store
-            Map<String, Object> result = new HashMap<>();
-            result.put("score", score);
-            result.put("selectedAnswer", selectedAnswer);
-            result.put("correctAnswer", correctAnswerText);
-            result.put("timestamp", FieldValue.serverTimestamp());
-            // Save the result document to the "quiz" collection
-            db.collection("quiz")
-                    .add(result)
-                    .addOnSuccessListener(documentReference -> {
-                        // On success, move to the next activity
-                        Intent intent = new Intent(PreAsses15.this, PreAssess1After.class);
-                        intent.putExtra("score", score);
-                        startActivity(intent);
-                    })
-                    .addOnFailureListener(e -> {
-                        Toast.makeText(PreAsses15.this, "Error saving result", Toast.LENGTH_SHORT).show();
-                    });
         });
     }
 
@@ -141,6 +129,7 @@ public class PreAsses15 extends AppCompatActivity {
                 long secondsLeft = millisUntilFinished / 1000;
                 timerTextView.setText("Time left: " + secondsLeft + "s");
             }
+
             @Override
             public void onFinish() {
                 timerTextView.setText("Time's up!");
@@ -149,8 +138,9 @@ public class PreAsses15 extends AppCompatActivity {
                 radioGroup.check(correctAnswerId);
                 answered = true;
                 submitButton.setEnabled(false);
-                next11Button.setEnabled(true); // Enable Next button on auto-submission
+                next11Button.setEnabled(true); // Enable next button on auto-submission
                 Toast.makeText(PreAsses15.this, "Time is up! Correct answer is shown.", Toast.LENGTH_SHORT).show();
+
                 // Highlight the correct answer in green
                 RadioButton correctRadioButton = findViewById(correctAnswerId);
                 correctRadioButton.setTextColor(Color.GREEN);
@@ -176,8 +166,8 @@ public class PreAsses15 extends AppCompatActivity {
         for (int i = 0; i < radioGroup.getChildCount(); i++) {
             if (radioGroup.getChildAt(i) instanceof RadioButton) {
                 RadioButton rb = (RadioButton) radioGroup.getChildAt(i);
-                rb.setTextColor(Color.BLACK);
-                rb.setButtonTintList(null);
+                rb.setTextColor(Color.BLACK);  // Reset text color to black
+                rb.setButtonTintList(null);     // Reset to default tint
             }
         }
     }
@@ -185,6 +175,7 @@ public class PreAsses15 extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        // Cancel the timer to prevent memory leaks
         if (countDownTimer != null) {
             countDownTimer.cancel();
         }

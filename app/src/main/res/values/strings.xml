@@ -43,8 +43,10 @@
     <string name="pre1scoress">Your score is:</string>
     <string name="pre1score">5/5 points</string>
     <string name="prenote">Great job!  Your responses show you\'re beginning to understand how everyday choices affect our environment. Now, click \'Next\' to watch the following educational video and discover more strategies for reducing your carbon footprint.</string>
+    <string name="whatiscarbon">What is Carbon Footprint?</string>
+    <string name="effectcarbon">Effects of Carbon Footprint</string>
 
-
+    <!-- REGISTER -->
     <string name="Firstname">Firstname</string>
     <string name="Lastname">Lastname</string>
     <string name="Username">Username</string>
@@ -55,5 +57,8 @@
     <string name="terms_conditions_description">I Agree to the Terms And Condition</string>
     <string name="SignUp">SIGNUP</string>
     <string name="Do_have_an_account_Login"><b><i>Already have an account? Login</i></b></string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="instrucPostAssess">After watching the educational video on carbon emissions, please complete the post-assessment quiz to see if you\'ve gained knowledge, with <b><u><i>the points you earn directly reflecting your understanding.</i></u></b></string>
 
 </resources>

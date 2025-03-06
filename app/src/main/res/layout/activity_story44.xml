@@ -7,7 +7,7 @@
 
     <!-- Horizontal Progress Bar for story timer -->
     <ProgressBar
-        android:id="@+id/progressBar12"
+        android:id="@+id/progressBar44"
         style="?android:attr/progressBarStyleHorizontal"
         android:layout_width="match_parent"
         android:layout_height="10dp"
@@ -15,9 +15,10 @@
         android:progress="0"
         android:progressTint="@color/WBlue" />
 
+
     <!-- ViewPager2 for swiping through stories -->
     <androidx.viewpager2.widget.ViewPager2
-        android:id="@+id/viewPagerStories12"
+        android:id="@+id/viewPagerStories44"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1" />

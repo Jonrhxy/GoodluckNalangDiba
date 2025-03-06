@@ -48,6 +48,7 @@ public class HomeFragment extends Fragment {
 
         // Find the CardView with the id "vid1" in your fragment layout
         CardView vid1Card = root.findViewById(R.id.vid1);
+        CardView vid2Card = root.findViewById(R.id.vid2);
 
         // Set an OnClickListener on the CardView to start the PreAssess1 activity
         vid1Card.setOnClickListener(new View.OnClickListener() {
@@ -58,8 +59,20 @@ public class HomeFragment extends Fragment {
             }
         });
 
+        // Set an OnClickListener on the CardView to start the PreAssess1 activity
+        vid2Card.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(), PreAssess2.class);
+                preAssessLauncher.launch(intent);
+            }
+        });
+
         // Find the CardView with the id "trivia1" in your fragment layout
         CardView trivia1Card = root.findViewById(R.id.trivia1);
+        CardView trivia2Card = root.findViewById(R.id.trivia2);
+        CardView trivia3Card = root.findViewById(R.id.trivia3);
+        CardView trivia4Card = root.findViewById(R.id.trivia4);
 
         // Set an OnClickListener on the CardView to start the trivia11 activity
         trivia1Card.setOnClickListener(new View.OnClickListener() {
@@ -69,6 +82,34 @@ public class HomeFragment extends Fragment {
                 startActivity(triviaIntent);
             }
         });
+
+        // Set an OnClickListener on the CardView to start the trivia11 activity
+        trivia2Card.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent triviaIntent = new Intent(getActivity(), StoryActivity22.class);
+                startActivity(triviaIntent);
+            }
+        });
+
+        // Set an OnClickListener on the CardView to start the trivia11 activity
+        trivia3Card.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent triviaIntent = new Intent(getActivity(), StoryActivity33.class);
+                startActivity(triviaIntent);
+            }
+        });
+
+        // Set an OnClickListener on the CardView to start the trivia11 activity
+        trivia4Card.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent triviaIntent = new Intent(getActivity(), StoryActivity44.class);
+                startActivity(triviaIntent);
+            }
+        });
+
 
         return root;
     }

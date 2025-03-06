@@ -268,6 +268,7 @@
 
                 <!-- Rank 4 -->
                 <LinearLayout
+
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
@@ -302,6 +303,7 @@
                         android:orientation="vertical">
 
                         <TextView
+                            android:id="@+id/tvFourthPlaceName"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Celine"
@@ -317,7 +319,7 @@
                     </LinearLayout>
 
                     <!-- Points -->
-                    <TextView
+                    <TextView android:id="@+id/tvFourthPlacePoints"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="950 points"
