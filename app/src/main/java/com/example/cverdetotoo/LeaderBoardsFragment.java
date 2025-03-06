@@ -22,13 +22,13 @@ import java.util.List;
 
 public class LeaderBoardsFragment extends Fragment {
 
-    // Dedicated views for top 4 leaderboard positions
+    // Dedicated views for the top 4 positions
     private TextView firstPlaceName, firstPlaceScore;
     private TextView secondPlaceName, secondPlaceScore;
     private TextView thirdPlaceName, thirdPlaceScore;
     private TextView fourthPlaceName, fourthPlaceScore;
 
-    // Container for the remaining leaderboard rows (rank 5 and beyond)
+    // Container for ranking from 5th position onward
     private LinearLayout rvLeaderboard;
 
     // Firestore instance
@@ -39,7 +39,7 @@ public class LeaderBoardsFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater,
                              @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        // Inflate your fragment layout (ensure the layout file matches your resource name)
+        // Inflate the layout (make sure the layout file name matches)
         View view = inflater.inflate(R.layout.activity_leader_boards, container, false);
 
         // Bind UI elements from the layout
@@ -56,108 +56,113 @@ public class LeaderBoardsFragment extends Fragment {
         // Initialize Firestore
         db = FirebaseFirestore.getInstance();
 
-        // Load leaderboard data from Firestore
+        // Load leaderboard data from the "Users" collection
         loadLeaderBoardData();
 
         return view;
     }
 
-    // Fetch leaderboard data from the "Games" collection
+    // Fetch leaderboard data from the "Users" collection
     private void loadLeaderBoardData() {
-        db.collection("Games")
+        db.collection("Users")
                 .get()
                 .addOnCompleteListener(task -> {
                     if (task.isSuccessful()) {
-                        List<GameData> leaderboardData = new ArrayList<>();
+                        List<UserData> leaderboardData = new ArrayList<>();
                         for (QueryDocumentSnapshot document : task.getResult()) {
                             if (document.contains("highScore")) {
-                                // Create GameData using the document ID as the username and highScore field
-                                GameData gameData = new GameData(
-                                        document.getId(),
-                                        document.getLong("highScore").intValue()
-                                );
-                                leaderboardData.add(gameData);
+                                // Try to get the username field; if null, fallback to document ID
+                                String username = document.getString("username");
+                                if (username == null) {
+                                    username = document.getId();
+                                }
+                                // Get the high score (defaulting to 0 if null)
+                                int score = document.getLong("highScore") != null
+                                        ? document.getLong("highScore").intValue()
+                                        : 0;
+                                leaderboardData.add(new UserData(username, score));
                             }
                         }
                         // Sort the list by highScore in descending order
                         leaderboardData.sort((a, b) -> Integer.compare(b.highScore, a.highScore));
                         updateLeaderboardUI(leaderboardData);
                     } else {
-                        Toast.makeText(getContext(), "Error getting leaderboard data: "
-                                + task.getException(), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getContext(),
+                                "Error loading leaderboard data: " + task.getException(),
+                                Toast.LENGTH_SHORT).show();
                     }
                 });
     }
 
     // Update the UI with leaderboard data
-    private void updateLeaderboardUI(List<GameData> leaderboardData) {
-        // Clear any existing views in the container for the remaining entries
+    private void updateLeaderboardUI(List<UserData> leaderboardData) {
+        // Clear any existing views from the dynamic container
         rvLeaderboard.removeAllViews();
 
         for (int i = 0; i < leaderboardData.size(); i++) {
-            GameData player = leaderboardData.get(i);
-
-            // Assign the top four players to dedicated slots
+            UserData user = leaderboardData.get(i);
             if (i == 0) {
-                firstPlaceName.setText(player.username);
-                firstPlaceScore.setText(player.highScore + " HIGH SCORE");
+                firstPlaceName.setText(user.username);
+                firstPlaceScore.setText(user.highScore + " HIGH SCORE");
             } else if (i == 1) {
-                secondPlaceName.setText(player.username);
-                secondPlaceScore.setText(player.highScore + " HIGH SCORE");
+                secondPlaceName.setText(user.username);
+                secondPlaceScore.setText(user.highScore + " HIGH SCORE");
             } else if (i == 2) {
-                thirdPlaceName.setText(player.username);
-                thirdPlaceScore.setText(player.highScore + " HIGH SCORE");
+                thirdPlaceName.setText(user.username);
+                thirdPlaceScore.setText(user.highScore + " HIGH SCORE");
             } else if (i == 3) {
-                fourthPlaceName.setText(player.username);
-                fourthPlaceScore.setText(player.highScore + " HIGH SCORE");
+                fourthPlaceName.setText(user.username);
+                fourthPlaceScore.setText(user.highScore + " HIGH SCORE");
             } else {
-                // For players starting at rank 5 (index 4 and beyond), add them to the dynamic list
-                LinearLayout playerLayout = new LinearLayout(getContext());
-                playerLayout.setOrientation(LinearLayout.HORIZONTAL);
-                playerLayout.setPadding(16, 8, 16, 8);
-                playerLayout.setGravity(Gravity.CENTER_VERTICAL);
-                // Alternate background colors for readability
-                playerLayout.setBackgroundColor(Color.parseColor(i % 2 == 0 ? "#DFF8E7" : "#C8E6C9"));
-                LinearLayout.LayoutParams layoutParams =
-                        new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-                playerLayout.setLayoutParams(layoutParams);
+                // For rank 5 and beyond, dynamically create a row layout
+                LinearLayout rowLayout = new LinearLayout(getContext());
+                rowLayout.setOrientation(LinearLayout.HORIZONTAL);
+                rowLayout.setPadding(16, 8, 16, 8);
+                rowLayout.setGravity(Gravity.CENTER_VERTICAL);
+                // Alternate background color for better readability
+                String bgColor = (i % 2 == 0) ? "#DFF8E7" : "#C8E6C9";
+                rowLayout.setBackgroundColor(Color.parseColor(bgColor));
 
-                // Create a TextView for the rank and username
-                TextView playerNameTextView = new TextView(getContext());
-                // Use (i+1) so that rank is correct (rank 5 for index 4, etc.)
-                playerNameTextView.setText((i + 1) + ". " + player.username);
-                playerNameTextView.setTextSize(16);
-                playerNameTextView.setTextColor(Color.BLACK);
+                LinearLayout.LayoutParams rowParams =
+                        new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
+                                ViewGroup.LayoutParams.WRAP_CONTENT);
+                rowLayout.setLayoutParams(rowParams);
+
+                // TextView for rank and username
+                TextView tvName = new TextView(getContext());
+                tvName.setText((i + 1) + ". " + user.username);
+                tvName.setTextSize(16);
+                tvName.setTextColor(Color.BLACK);
                 LinearLayout.LayoutParams nameParams =
                         new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.WRAP_CONTENT, 1);
-                playerNameTextView.setLayoutParams(nameParams);
+                tvName.setLayoutParams(nameParams);
 
-                // Create a TextView for the score
-                TextView playerScoreTextView = new TextView(getContext());
-                playerScoreTextView.setText(player.highScore + " HIGH SCORE");
-                playerScoreTextView.setTextSize(14);
-                playerScoreTextView.setTextColor(Color.DKGRAY);
+                // TextView for the score
+                TextView tvScore = new TextView(getContext());
+                tvScore.setText(user.highScore + " HIGH SCORE");
+                tvScore.setTextSize(14);
+                tvScore.setTextColor(Color.DKGRAY);
 
-                // Add the TextViews to the player's layout
-                playerLayout.addView(playerNameTextView);
-                playerLayout.addView(playerScoreTextView);
+                // Add the TextViews to the row layout
+                rowLayout.addView(tvName);
+                rowLayout.addView(tvScore);
 
-                // Add the player's row to the container
-                rvLeaderboard.addView(playerLayout);
+                // Add the row layout to the rvLeaderboard container
+                rvLeaderboard.addView(rowLayout);
             }
         }
     }
 
-    // Data model for leaderboard entries
-    public static class GameData {
+    // Data model for user leaderboard data
+    public static class UserData {
         public String username;
         public int highScore;
 
-        public GameData() {
+        public UserData() {
             // Default constructor required for Firestore
         }
 
-        public GameData(String username, int highScore) {
+        public UserData(String username, int highScore) {
             this.username = username;
             this.highScore = highScore;
         }
