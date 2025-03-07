@@ -1,58 +1,61 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:padding="6dp"
-    android:background="@drawable/welcomebg"
-    android:gravity="center">
+<android.widget.ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="6dp">
 
     <LinearLayout
-        android:id="@+id/desgin2"
-        android:layout_width="wrap_content"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8sp"
-        android:gravity="center"
-        android:orientation="vertical">
+        android:background="@drawable/welcomebg"
+        android:gravity="center">
 
-        <!-- Image view for character -->
-        <ImageView
-            android:id="@+id/popUpImage"
+        <LinearLayout
+            android:id="@+id/desgin2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/welcome3" />
-    </LinearLayout>
+            android:layout_marginTop="8sp"
+            android:gravity="center"
+            android:orientation="vertical">
 
-    <LinearLayout
-        android:id="@+id/text32"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="-165sp"
-        android:gravity="center"
+            <!-- Image view for character -->
+            <ImageView
+                android:id="@+id/popUpImage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/welcome3" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/text32"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="-190dp"
+            android:gravity="center"
         android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/popUpText133"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/transpo"
-        android:textSize="24sp"
-        android:layout_gravity="left"
-        android:fontFamily="@font/poppinsmedium"
-        android:textColor="@color/YGreen"
-        android:gravity="center"/>
+        <TextView
+            android:id="@+id/popUpText133"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/transpo"
+            android:textSize="24sp"
+            android:layout_gravity="left"
+            android:fontFamily="@font/poppinsmedium"
+            android:textColor="@color/YGreen"
+            android:gravity="center" />
 
-    <!-- TextView popUpText13 at the bottom center -->
-    <TextView
-        android:id="@+id/popUpText13"
-        android:layout_width="340sp"
-        android:layout_height="85sp"
-        android:text="@string/welcome3"
-        android:textSize="14sp"
-        android:textAlignment="center"
-        android:fontFamily="@font/poppinsregular"
-        android:textColor="@color/YGreen"
-        android:gravity="center"/>
+        <!-- TextView popUpText13 at the bottom center -->
+        <TextView
+            android:id="@+id/popUpText13"
+            android:layout_width="340sp"
+            android:layout_height="85sp"
+            android:text="@string/welcome3"
+            android:textSize="14sp"
+            android:textAlignment="center"
+            android:fontFamily="@font/poppinsregular"
+            android:textColor="@color/YGreen"
+            android:gravity="center"/>
     </LinearLayout>
 
     <!-- Button for next, placed below popUpText13 -->
@@ -67,7 +70,7 @@
             android:id="@+id/btnWBack3"
             android:layout_width="120sp"
             android:layout_height="50sp"
-            android:layout_marginTop="-1sp"
+            android:layout_marginTop="0dp"
             android:layout_marginEnd="50sp"
             android:background="@drawable/redbtn"
             android:fontFamily="@font/poppinsmedium"
@@ -77,10 +80,12 @@
             android:id="@+id/btnWNext3"
             android:layout_width="120sp"
             android:layout_height="50sp"
-            android:layout_marginTop="-1sp"
+            android:layout_marginTop="0dp"
             android:background="@drawable/redbtn"
             android:fontFamily="@font/poppinsmedium"
             android:text="@string/next" />
     </LinearLayout>
 
 </LinearLayout>
+
+    </android.widget.ScrollView>

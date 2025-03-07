@@ -56,7 +56,7 @@ public class navbar extends AppCompatActivity {
             return true;
         });
 
-        checkForDiscountPopup();
+
     }
 
     private void loadFragment(Fragment fragment, int itemId) {
@@ -117,7 +117,5 @@ public class navbar extends AppCompatActivity {
         return layerDrawable;
     }
 
-    private void checkForDiscountPopup() {
-        // Implement your discount popup logic here.
-    }
+
 }

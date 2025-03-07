@@ -15,8 +15,8 @@ public class popupWelcome2 extends AppCompatActivity {
         setContentView(R.layout.activity_popup_welcome2);  // replace with your layout XML
 
         // Find the button by its ID
-        Button btnWNext1 = findViewById(R.id.btnWNext1);
-        Button btnWBack1 = findViewById(R.id.btnWBack1);
+        Button btnWNext1 = findViewById(R.id.btnWNext2);
+        Button btnWBack1 = findViewById(R.id.btnWBack2);
 
         // Set an onClickListener for the button
         btnWBack1.setOnClickListener(new View.OnClickListener() {

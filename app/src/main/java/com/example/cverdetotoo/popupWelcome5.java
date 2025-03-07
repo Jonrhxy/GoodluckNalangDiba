@@ -12,11 +12,11 @@ public class popupWelcome5 extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_popup_welcome3);  // replace with your layout XML
+        setContentView(R.layout.activity_popup_welcome5);  // replace with your layout XML
 
         // Find the button by its ID
-        Button btnWNext1 = findViewById(R.id.btnWNext3);
-        Button btnWBack1 = findViewById(R.id.btnWBack3);
+        Button btnWNext1 = findViewById(R.id.btnWNext5);
+        Button btnWBack1 = findViewById(R.id.btnWBack5);
 
         // Set an onClickListener for the button
         btnWBack1.setOnClickListener(new View.OnClickListener() {

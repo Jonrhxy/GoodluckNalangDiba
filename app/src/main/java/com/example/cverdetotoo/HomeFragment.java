@@ -1,7 +1,9 @@
 package com.example.cverdetotoo;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -24,19 +26,18 @@ public class HomeFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        // Inflate the layout using the standard inflater
+        // Inflate the layout for this fragment
         View root = inflater.inflate(R.layout.activity_home, container, false);
 
-        // Optionally show the welcome popup (you might want to show this only once)
+        // Show the welcome popup only once (using SharedPreferences)
         showWelcomePopup();
 
-        // Register the ActivityResultLauncher for PreAssess1
+        // Register the ActivityResultLauncher for PreAssess activities
         preAssessLauncher = registerForActivityResult(
                 new ActivityResultContracts.StartActivityForResult(),
                 new ActivityResultCallback<ActivityResult>() {
                     @Override
                     public void onActivityResult(ActivityResult result) {
-                        // Check if PreAssess1 returned with RESULT_OK
                         if (result.getResultCode() == Activity.RESULT_OK) {
                             // Launch video1 activity
                             Intent videoIntent = new Intent(getActivity(), video1.class);
@@ -46,11 +47,9 @@ public class HomeFragment extends Fragment {
                 }
         );
 
-        // Find the CardView with the id "vid1" in your fragment layout
+        // Set click listeners for video cards
         CardView vid1Card = root.findViewById(R.id.vid1);
         CardView vid2Card = root.findViewById(R.id.vid2);
-
-        // Set an OnClickListener on the CardView to start the PreAssess1 activity
         vid1Card.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -58,8 +57,6 @@ public class HomeFragment extends Fragment {
                 preAssessLauncher.launch(intent);
             }
         });
-
-        // Set an OnClickListener on the CardView to start the PreAssess2 activity
         vid2Card.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -68,7 +65,7 @@ public class HomeFragment extends Fragment {
             }
         });
 
-        // Find the CardViews for trivia and set their listeners similarly...
+        // Set click listeners for trivia cards
         CardView trivia1Card = root.findViewById(R.id.trivia1);
         CardView trivia2Card = root.findViewById(R.id.trivia2);
         CardView trivia3Card = root.findViewById(R.id.trivia3);
@@ -109,16 +106,24 @@ public class HomeFragment extends Fragment {
         return root;
     }
 
+    /**
+     * Launches the welcome popup activity only once.
+     */
     private void showWelcomePopup() {
-        // Launch popupWelcome activity as a popup-style screen
-        Intent intent = new Intent(getActivity(), popupWelcome.class);
-        startActivity(intent);
+        if (getContext() != null) {
+            SharedPreferences prefs = getContext().getSharedPreferences("app_prefs", Context.MODE_PRIVATE);
+            boolean popupShown = prefs.getBoolean("popupShown", false);
+            if (!popupShown) {
+                Intent intent = new Intent(getActivity(), popupWelcome.class);
+                startActivity(intent);
+                prefs.edit().putBoolean("popupShown", true).apply();
+            }
+        }
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        // Hide the ActionBar if needed
         AppCompatActivity activity = (AppCompatActivity) requireActivity();
         if (activity.getSupportActionBar() != null) {
             activity.getSupportActionBar().hide();

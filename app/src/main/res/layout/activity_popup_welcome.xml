@@ -1,12 +1,14 @@
-<!-- res/layout/popup_layout.xml -->
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:padding="16dp"
-    android:background="@drawable/welcomebg"
-    android:gravity="center">
+<android.widget.ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/welcomebg"
+        android:gravity="center"
+        android:paddingBottom="3dp">
 
     <!-- Image view for character -->
     <ImageView
@@ -20,34 +22,27 @@
         android:id="@+id/popUpText"
         android:layout_width="150sp"
         android:layout_height="110sp"
-        android:layout_marginTop="-198sp"
+        android:layout_marginTop="-192dp"
         android:layout_marginEnd="80sp"
-        android:text="@string/hey"
-        android:textSize="16sp"
-        android:fontFamily="@font/poppinsmedium"
-        android:textAlignment="center"
-        android:background="@drawable/bubble"
-        android:padding="8dp"
-        android:textColor="@color/BlckYellow" />
+    android:text="@string/hey"
+    android:textSize="16sp"
+    android:fontFamily="@font/poppinsmedium"
+    android:textAlignment="center"
+    android:background="@drawable/bubble"
+    android:padding="8dp"
+    android:textColor="@color/BlckYellow" />
 
-    <LinearLayout
-        android:id="@+id/btnnxt1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="98sp"
-        android:layout_marginStart="90sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/radiopostQ11">
-
+    <!-- Button -->
     <Button
         android:id="@+id/btnWNext"
         android:layout_width="120sp"
         android:layout_height="50sp"
+        android:layout_marginTop="92dp"
+        android:layout_gravity="center"
         android:background="@drawable/redbtn"
         android:fontFamily="@font/poppinsmedium"
         android:text="@string/next" />
-    </LinearLayout>
 
 </LinearLayout>
+
+    </android.widget.ScrollView>
