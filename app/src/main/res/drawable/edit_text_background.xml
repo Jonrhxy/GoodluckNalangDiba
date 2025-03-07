@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- Shadow layer (drawn first) -->
+    <item>
+        <shape android:shape="rectangle">
+            <corners android:radius="20dp"/>
+            <!-- This color acts like a soft shadow.
+                 Adjust alpha or darkness to make it more/less pronounced. -->
+            <solid android:color="#E0DAC2"/>
+        </shape>
+    </item>
+
+    <!-- Main background layer (drawn on top of the shadow) -->
+    <!-- The top offset (android:top="3dp") creates the visual drop shadow. -->
+    <item android:top="3dp">
+        <shape android:shape="rectangle">
+            <corners android:radius="20dp"/>
+            <!-- Light beige background color -->
+            <solid android:color="#FFF8E5"/>
+            <!-- Subtle border stroke -->
+            <stroke android:width="1dp" android:color="#C5BBA5"/>
+        </shape>
+    </item>
+
+</layer-list>

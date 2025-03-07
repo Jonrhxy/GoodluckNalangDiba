@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/scrollView"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/qcubg"
+    android:padding="16dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <!-- Header row with back arrow on the left and title in center -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginBottom="16dp">
+
+            <!-- Back arrow on the left -->
+            <ImageView
+                android:id="@+id/imageViewBack"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/arrow_back"
+            android:padding="8dp" />
+
+            <!-- "ABOUT C-VERDE" centered horizontally -->
+            <TextView
+                android:id="@+id/textViewHeader"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:layout_marginLeft="-30sp"
+                android:text="ABOUT C-VERDE"
+                android:textColor="@android:color/white"
+                android:textSize="24sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <!-- Two small images (QCU logo & C-Verde logo) aligned to the right -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="16dp"
+            android:gravity="end">
+
+            <ImageView
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:src="@drawable/qculogo"
+                android:layout_marginEnd="8dp" />
+
+            <ImageView
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:src="@drawable/cverdelogo" />
+        </LinearLayout>
+
+        <!-- Main image (team photo or logo) -->
+        <ImageView
+            android:id="@+id/imageViewTeam"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:adjustViewBounds="true"
+            android:scaleType="centerCrop"
+            android:src="@drawable/teamphoto"
+            android:layout_marginBottom="16dp" />
+
+        <!-- A card for the descriptive text and contact info -->
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:padding="0dp"
+            app:cardCornerRadius="16dp"
+            app:cardUseCompatPadding="true"
+            app:cardBackgroundColor="@android:color/transparent">
+
+            <!-- Container with a custom background (semi-transparent or styled shape) -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="@drawable/bg_container"
+                android:padding="16dp">
+
+                <!-- Main body text -->
+                <TextView
+                    android:id="@+id/textViewBody"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="16dp"
+                    android:textColor="@android:color/white"
+                    android:textSize="16sp"
+                    android:text="C-Verde is an innovative mobile app developed by Quezon City University Bachelor of Science in Information Technology students from section SBIT-4H to help users monitor and reduce their carbon footprint by tracking transportation, food consumption, and waste.\n\nIt provides insights and recommendations for eco-friendly habits, along with challenges and daily tasks. Completing these challenges comes with rewards or partnerships that support environmental sustainability, promoting continued engagement and future projects.\n\nC-Verde is not just an app; it's a movement toward environmental awareness. Whether you want to make a small change or a global impact, C-Verde and Quezon City University offer tools and inspiration to help create a greener future." />
+
+                <!-- Contact label -->
+                <TextView
+                    android:id="@+id/textViewContactLabel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@android:color/white"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    android:layout_marginBottom="8dp"
+                    android:text="For inquiries:" />
+
+                <!-- Facebook row with icon -->
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginBottom="8dp">
+
+                    <ImageView
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:src="@drawable/facebook"
+                        android:layout_marginEnd="8dp" />
+
+                    <TextView
+                        android:id="@+id/textViewFacebook"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@android:color/white"
+                        android:textSize="14sp"
+                        android:text="C-Verde" />
+                </LinearLayout>
+
+                <!-- Gmail row with icon -->
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginBottom="8dp">
+
+                    <ImageView
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:src="@drawable/gmail"
+                        android:layout_marginEnd="8dp" />
+
+                    <TextView
+                        android:id="@+id/textViewEmail"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@android:color/white"
+                        android:textSize="14sp"
+                        android:text="c.verde0101@gmail.com" />
+                </LinearLayout>
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+    </LinearLayout>
+</ScrollView>

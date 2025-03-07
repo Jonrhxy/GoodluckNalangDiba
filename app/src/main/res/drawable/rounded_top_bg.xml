@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+
+    <!-- Adjust the corner radius as desired -->
+    <corners
+        android:topLeftRadius="16dp"
+        android:topRightRadius="16dp" />
+
+    <!-- Set the container color (e.g., white) -->
+    <bitmap
+        android:src="@drawable/bgblue"
+    android:gravity="fill"
+    android:tileMode="disabled" />
+
+</shape>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- 1) Shadow layer (drawn first) -->
+    <item>
+        <shape android:shape="rectangle">
+            <corners android:radius="16dp" />
+            <!-- Semi-transparent black to simulate a drop shadow -->
+            <solid android:color="#33000000" />
+        </shape>
+    </item>
+
+    <!-- 2) Main shape layer (inset from the right & bottom) -->
+    <item
+        android:right="4dp"
+        android:bottom="4dp">
+        <shape android:shape="rectangle">
+            <corners android:radius="16dp" />
+            <solid android:color="#FFF8E5" /> <!-- Your desired background color -->
+        </shape>
+    </item>
+
+</layer-list>
