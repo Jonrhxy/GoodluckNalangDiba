@@ -24,11 +24,11 @@ public class HomeFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        // Initialize your ViewModel if needed
-        HomeViewModel homeViewModel = new ViewModelProvider(this).get(HomeViewModel.class);
-
         // Inflate the layout using the standard inflater
         View root = inflater.inflate(R.layout.activity_home, container, false);
+
+        // Optionally show the welcome popup (you might want to show this only once)
+        showWelcomePopup();
 
         // Register the ActivityResultLauncher for PreAssess1
         preAssessLauncher = registerForActivityResult(
@@ -59,7 +59,7 @@ public class HomeFragment extends Fragment {
             }
         });
 
-        // Set an OnClickListener on the CardView to start the PreAssess1 activity
+        // Set an OnClickListener on the CardView to start the PreAssess2 activity
         vid2Card.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -68,13 +68,12 @@ public class HomeFragment extends Fragment {
             }
         });
 
-        // Find the CardView with the id "trivia1" in your fragment layout
+        // Find the CardViews for trivia and set their listeners similarly...
         CardView trivia1Card = root.findViewById(R.id.trivia1);
         CardView trivia2Card = root.findViewById(R.id.trivia2);
         CardView trivia3Card = root.findViewById(R.id.trivia3);
         CardView trivia4Card = root.findViewById(R.id.trivia4);
 
-        // Set an OnClickListener on the CardView to start the trivia11 activity
         trivia1Card.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -83,7 +82,6 @@ public class HomeFragment extends Fragment {
             }
         });
 
-        // Set an OnClickListener on the CardView to start the trivia11 activity
         trivia2Card.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -92,7 +90,6 @@ public class HomeFragment extends Fragment {
             }
         });
 
-        // Set an OnClickListener on the CardView to start the trivia11 activity
         trivia3Card.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -101,7 +98,6 @@ public class HomeFragment extends Fragment {
             }
         });
 
-        // Set an OnClickListener on the CardView to start the trivia11 activity
         trivia4Card.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -110,14 +106,19 @@ public class HomeFragment extends Fragment {
             }
         });
 
-
         return root;
+    }
+
+    private void showWelcomePopup() {
+        // Launch popupWelcome activity as a popup-style screen
+        Intent intent = new Intent(getActivity(), popupWelcome.class);
+        startActivity(intent);
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        // Hide the entire ActionBar to remove the black layout above
+        // Hide the ActionBar if needed
         AppCompatActivity activity = (AppCompatActivity) requireActivity();
         if (activity.getSupportActionBar() != null) {
             activity.getSupportActionBar().hide();

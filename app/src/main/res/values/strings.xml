@@ -128,10 +128,20 @@
     <string name="termsandcon"><![CDATA[TERMS & CONDITIONS]]></string>
 
 
-
     <!-- CABS -->
     strings.xml
     <string name="channel_name">Motivational Notifications</string>
     <string name="channel_description">Channel for motivational notifications and facts</string>
+    <string name="hey">Hey There!\nLet me show you around!♡</string>
+    <string name="diduknow">\nDid you know?</string>
+    <string name="welcome2"><b><u>Everything we do leaves a carbon footprint</u></b> — sending an email, eating a meal, or streaming a video all contribute to CO₂ emissions. Even a single cheeseburger can produce CO₂!</string>
+    <string name="back">BACK</string>
+    <string name="welcome3">Cars release carbon dioxide, a greenhouse gas that contributes to climate change. Choosing to walk, bike, or take public transport helps reduce our carbon footprint</string>
+    <string name="transpo">Transportation</string>
+    <string name="welcome4">The food we eat also impacts the environment. Locally grown and plant-based foods have a lower carbon footprint compared to processed and imported goods.</string>
+    <string name="food">Food</string>
+    <string name="heard">Have you heard?</string>
+    <string name="welcome5">We can reduce our carbon footprint by using public transport, saving energy, reducing waste, choosing sustainable food, and planting trees.</string>
+
 
 </resources>

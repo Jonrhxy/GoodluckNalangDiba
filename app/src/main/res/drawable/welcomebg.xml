@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+    <corners
+        android:topLeftRadius="30dp"
+        android:topRightRadius="30dp"
+        android:bottomLeftRadius="30dp"
+        android:bottomRightRadius="30dp" />
+
+    <!-- Example gradient going from a darker red to lighter red. -->
+    <gradient
+        android:startColor="#1C0101"
+        android:centerColor="#620A04"
+        android:endColor="#A91308"
+        android:angle="90"/>
+</shape>

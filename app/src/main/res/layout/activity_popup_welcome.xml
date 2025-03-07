@@ -1,0 +1,53 @@
+<!-- res/layout/popup_layout.xml -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:padding="16dp"
+    android:background="@drawable/welcomebg"
+    android:gravity="center">
+
+    <!-- Image view for character -->
+    <ImageView
+        android:id="@+id/popUpImage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/welcomemain" />
+
+    <!-- Text bubble -->
+    <TextView
+        android:id="@+id/popUpText"
+        android:layout_width="150sp"
+        android:layout_height="110sp"
+        android:layout_marginTop="-198sp"
+        android:layout_marginEnd="80sp"
+        android:text="@string/hey"
+        android:textSize="16sp"
+        android:fontFamily="@font/poppinsmedium"
+        android:textAlignment="center"
+        android:background="@drawable/bubble"
+        android:padding="8dp"
+        android:textColor="@color/BlckYellow" />
+
+    <LinearLayout
+        android:id="@+id/btnnxt1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="98sp"
+        android:layout_marginStart="90sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/radiopostQ11">
+
+    <Button
+        android:id="@+id/btnWNext"
+        android:layout_width="120sp"
+        android:layout_height="50sp"
+        android:background="@drawable/redbtn"
+        android:fontFamily="@font/poppinsmedium"
+        android:text="@string/next" />
+    </LinearLayout>
+
+</LinearLayout>

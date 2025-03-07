@@ -1,7 +1,9 @@
 package com.example.cverdetotoo;
 
 import android.app.DatePickerDialog;
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.DatePicker;
 import android.widget.EditText;
@@ -13,9 +15,19 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.SetOptions;
+
 import java.util.Calendar;
+import java.util.HashMap;
+import java.util.Map;
 
 public class EditProfile extends AppCompatActivity {
+
+    private static final String TAG = "EditProfile";
 
     private ImageView ivBack;
     private EditText etFirstName, etLastName, etUsername, etEmail, etBirthDate;
@@ -23,14 +35,39 @@ public class EditProfile extends AppCompatActivity {
     private RadioButton rbFemale, rbMale, rbOthers;
     private TextView tvSaveChanges;
 
+    // Firebase instances
+    private FirebaseAuth auth;
+    private FirebaseFirestore db;
+    private FirebaseUser currentUser;
+
+    // Original data loaded from Firestore (document ID is based on the original username)
+    private String originalFirstName;
+    private String originalLastName;
+    private String originalUsername;  // Document ID used for lookups
+    private String originalEmail;
+    private String originalBirthDate;
+    private String originalGender;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        // Make sure your layout file name matches the one used here (for example, activity_edit_profile.xml)
         setContentView(R.layout.activity_edit_profile);
 
         initializeViews();
         setupListeners();
+
+        // Initialize Firebase Auth and Firestore
+        auth = FirebaseAuth.getInstance();
+        db = FirebaseFirestore.getInstance();
+        currentUser = auth.getCurrentUser();
+
+        if (currentUser == null) {
+            Toast.makeText(this, "User not logged in", Toast.LENGTH_SHORT).show();
+            finish();
+            return;
+        }
+
+        // Fetch user data from Firestore using the username as the document ID
         loadUserData();
     }
 
@@ -52,31 +89,19 @@ public class EditProfile extends AppCompatActivity {
     }
 
     /**
-     * Set up click listeners for various interactive views.
+     * Set up click listeners for interactive views.
      */
     private void setupListeners() {
-        // Handle the back arrow click to finish the activity
-        ivBack.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                finish(); // Go back to the previous screen
-            }
-        });
+        // Back arrow click finishes the activity
+        ivBack.setOnClickListener(view -> finish());
 
-        // Show DatePicker when clicking on the birth date field
-        etBirthDate.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                showDatePickerDialog();
-            }
-        });
+        // Show DatePicker when clicking the birth date field
+        etBirthDate.setOnClickListener(view -> showDatePickerDialog());
 
         // Handle the save changes button click
-        tvSaveChanges.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                saveProfileChanges();
-            }
+        tvSaveChanges.setOnClickListener(view -> {
+            Log.d(TAG, "Save Changes clicked");
+            saveProfileChanges();
         });
     }
 
@@ -85,9 +110,9 @@ public class EditProfile extends AppCompatActivity {
      */
     private void showDatePickerDialog() {
         final Calendar calendar = Calendar.getInstance();
-        int year = calendar.get(Calendar.YEAR);
+        int year  = calendar.get(Calendar.YEAR);
         int month = calendar.get(Calendar.MONTH);
-        int day = calendar.get(Calendar.DAY_OF_MONTH);
+        int day   = calendar.get(Calendar.DAY_OF_MONTH);
 
         DatePickerDialog datePickerDialog = new DatePickerDialog(this,
                 new DatePickerDialog.OnDateSetListener() {
@@ -102,49 +127,134 @@ public class EditProfile extends AppCompatActivity {
     }
 
     /**
-     * Validate the input fields and simulate saving the profile changes.
+     * Load existing user data from Firestore.
+     * This method uses the username (obtained from currentUser.getDisplayName()) as the document ID.
+     */
+    private void loadUserData() {
+        String docId = currentUser.getDisplayName();
+        if (docId == null || docId.isEmpty()) {
+            Toast.makeText(this, "User data is incomplete", Toast.LENGTH_SHORT).show();
+            finish();
+            return;
+        }
+        DocumentReference docRef = db.collection("users").document(docId);
+        docRef.get().addOnSuccessListener(documentSnapshot -> {
+            if (documentSnapshot.exists()) {
+                String firstName = documentSnapshot.getString("firstName");
+                String lastName  = documentSnapshot.getString("lastName");
+                String email     = documentSnapshot.getString("email");
+                String username  = documentSnapshot.getString("username");
+                String birthDate = documentSnapshot.getString("birthDate");
+                String gender    = documentSnapshot.getString("gender");
+
+                if (firstName != null) {
+                    etFirstName.setText(firstName);
+                    originalFirstName = firstName;
+                }
+                if (lastName != null) {
+                    etLastName.setText(lastName);
+                    originalLastName = lastName;
+                }
+                if (email != null) {
+                    etEmail.setText(email);
+                    originalEmail = email;
+                }
+                if (username != null) {
+                    etUsername.setText(username);
+                    originalUsername = username;
+                }
+                if (birthDate != null) {
+                    etBirthDate.setText(birthDate);
+                    originalBirthDate = birthDate;
+                }
+                if (gender != null) {
+                    originalGender = gender;
+                    if (gender.equalsIgnoreCase("Female")) {
+                        rgGender.check(rbFemale.getId());
+                    } else if (gender.equalsIgnoreCase("Male")) {
+                        rgGender.check(rbMale.getId());
+                    } else if (gender.equalsIgnoreCase("Others")) {
+                        rgGender.check(rbOthers.getId());
+                    }
+                }
+            } else {
+                Toast.makeText(EditProfile.this, "User data not found", Toast.LENGTH_SHORT).show();
+                finish();
+            }
+        }).addOnFailureListener(e -> {
+            Toast.makeText(EditProfile.this, "Failed to fetch user data: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+            Log.e(TAG, "Error fetching user data", e);
+            finish();
+        });
+    }
+
+    /**
+     * Validate input and update Firestore only if changes are detected.
+     * Regardless of whether the username field changes, this method updates the fields in the existing document.
      */
     private void saveProfileChanges() {
-        String firstName = etFirstName.getText().toString().trim();
-        String lastName = etLastName.getText().toString().trim();
-        String username = etUsername.getText().toString().trim();
-        String email = etEmail.getText().toString().trim();
-        String birthDate = etBirthDate.getText().toString().trim();
-        String gender = "";
+        String updatedFirstName = etFirstName.getText().toString().trim();
+        String updatedLastName  = etLastName.getText().toString().trim();
+        String updatedUsername  = etUsername.getText().toString().trim();
+        String updatedEmail     = etEmail.getText().toString().trim();
+        String updatedBirthDate = etBirthDate.getText().toString().trim();
+        String updatedGender    = "";
 
-        // Determine which gender option is selected
         int selectedId = rgGender.getCheckedRadioButtonId();
         if (selectedId == rbFemale.getId()) {
-            gender = "Female";
+            updatedGender = "Female";
         } else if (selectedId == rbMale.getId()) {
-            gender = "Male";
+            updatedGender = "Male";
         } else if (selectedId == rbOthers.getId()) {
-            gender = "Others";
+            updatedGender = "Others";
         }
 
-        // Simple validation
-        if (firstName.isEmpty() || lastName.isEmpty() || username.isEmpty() ||
-                email.isEmpty() || birthDate.isEmpty() || gender.isEmpty()) {
+        if (updatedFirstName.isEmpty() || updatedLastName.isEmpty() || updatedUsername.isEmpty() ||
+                updatedEmail.isEmpty() || updatedBirthDate.isEmpty() || updatedGender.isEmpty()) {
             Toast.makeText(this, "Please fill in all the fields.", Toast.LENGTH_SHORT).show();
             return;
         }
 
-        // TODO: Implement actual saving logic here (e.g., API call or saving to local storage)
+        // Check if any field has changed compared to the original data
+        if (updatedFirstName.equals(originalFirstName) &&
+                updatedLastName.equals(originalLastName) &&
+                updatedUsername.equals(originalUsername) &&
+                updatedEmail.equals(originalEmail) &&
+                updatedBirthDate.equals(originalBirthDate) &&
+                updatedGender.equalsIgnoreCase(originalGender)) {
+            Toast.makeText(this, "No changes to update.", Toast.LENGTH_SHORT).show();
+            return;
+        }
 
-        Toast.makeText(this, "Profile Updated Successfully!", Toast.LENGTH_SHORT).show();
+        // Prepare the updated data map (update the "username" field as well)
+        Map<String, Object> updatedData = new HashMap<>();
+        updatedData.put("firstName", updatedFirstName);
+        updatedData.put("lastName", updatedLastName);
+        updatedData.put("username", updatedUsername);
+        updatedData.put("email", updatedEmail);
+        updatedData.put("birthDate", updatedBirthDate);
+        updatedData.put("gender", updatedGender);
+
+        // Update the existing document (document ID remains the same as originalUsername)
+        DocumentReference docRef = db.collection("users").document(originalUsername);
+        docRef.set(updatedData, SetOptions.merge())
+                .addOnSuccessListener(aVoid -> {
+                    Toast.makeText(EditProfile.this, "Profile Updated Successfully!", Toast.LENGTH_SHORT).show();
+                    redirectToNavbar();
+                })
+                .addOnFailureListener(e -> {
+                    Toast.makeText(EditProfile.this, "Failed to update profile: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                    Log.e(TAG, "Error updating profile", e);
+                });
     }
 
     /**
-     * Load existing user data if available.
+     * Redirects to the Navbar activity.
      */
-    private void loadUserData() {
-        // Placeholder: Populate the fields with current user data if available.
-        // For example:
-        // etFirstName.setText("John");
-        // etLastName.setText("Doe");
-        // etUsername.setText("johndoe");
-        // etEmail.setText("john@example.com");
-        // etBirthDate.setText("1/1/1990");
-        // rgGender.check(rbMale.getId());
+    private void redirectToNavbar() {
+        Intent intent = new Intent(EditProfile.this, navbar.class); // Ensure Navbar is declared in AndroidManifest.xml
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(intent);
+        finish();
     }
 }

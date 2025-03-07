@@ -1,13 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
-
     <!-- Features -->
     <uses-feature
         android:name="android.hardware.camera"
-        android:required="false" />
-
-    <!-- Permissions -->
+        android:required="false" /> <!-- Permissions -->
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION" />
@@ -32,25 +29,34 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.CVERDETOTOO"
         tools:targetApi="31">
-
-        <!-- Service and Meta-data from first manifest -->
+        <activity
+            android:name=".popupWelcome5"
+            android:exported="false" />
+        <activity
+            android:name=".popupWelcome4"
+            android:exported="false" />
+        <activity
+            android:name=".popupWelcome3"
+            android:exported="false" />
+        <activity
+            android:name=".popupWelcome2"
+            android:exported="false" /> <!-- Service and Meta-data from first manifest -->
         <service
             android:name=".TrackingService"
             android:exported="false"
             android:foregroundServiceType="location" />
+
         <meta-data
             android:name="org.osmdroid.config"
-            android:value="osmdroid.config" />
-
-        <!-- Activities from first manifest -->
+            android:value="osmdroid.config" /> <!-- Activities from first manifest -->
         <activity
             android:name=".GPS"
             android:exported="false" />
         <activity
             android:name=".BattleEcoActivity"
+            android:configChanges="orientation|screenSize"
             android:exported="false"
-            android:screenOrientation="landscape"
-            android:configChanges="orientation|screenSize" />
+            android:screenOrientation="landscape" />
         <activity
             android:name=".BattleEcoStart"
             android:exported="false" />
@@ -153,7 +159,6 @@
         <activity
             android:name=".Signin"
             android:exported="false" />
-
         <activity
             android:name=".ActivityLogFragment"
             android:exported="false" />
@@ -171,11 +176,7 @@
             android:exported="false" />
         <activity
             android:name=".Settings"
-            android:exported="false" />
-
-
-
-        <!-- Additional activities from the second manifest -->
+            android:exported="false" /> <!-- Additional activities from the second manifest -->
         <activity
             android:name=".PostAssess1After"
             android:exported="false" />
@@ -192,15 +193,18 @@
             android:name=".PostAsses11"
             android:exported="false" />
         <activity
+            android:name=".popupWelcome"
+            android:exported="true"
+            android:theme="@style/Theme.AppCompat.Dialog" />
+        <activity
             android:name=".GPSstart"
-            android:exported="false" />
-
-        <!-- Launcher Activity -->
+            android:exported="false" /> <!-- Launcher Activity -->
         <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>

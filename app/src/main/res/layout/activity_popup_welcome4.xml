@@ -1,0 +1,87 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:padding="6dp"
+    android:background="@drawable/welcomebg"
+    android:gravity="center">
+
+    <LinearLayout
+        android:id="@+id/desgin2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8sp"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <!-- Image view for character -->
+        <ImageView
+            android:id="@+id/popUpImage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/welcome4" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/text32"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="-135sp"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/popUpText133"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/food"
+            android:textSize="24sp"
+            android:layout_gravity="left"
+            android:fontFamily="@font/poppinsmedium"
+            android:textColor="@color/YGreen"
+            android:gravity="center"/>
+
+        <!-- TextView popUpText13 at the bottom center -->
+        <TextView
+            android:id="@+id/popUpText13"
+            android:layout_width="340sp"
+            android:layout_height="85sp"
+            android:text="@string/welcome4"
+            android:textSize="14sp"
+            android:textAlignment="textStart"
+            android:fontFamily="@font/poppinsregular"
+            android:textColor="@color/YGreen"
+            android:gravity="center"/>
+    </LinearLayout>
+
+    <!-- Button for next, placed below popUpText13 -->
+    <LinearLayout
+        android:id="@+id/btnnxt1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="28sp"
+        android:layout_marginBottom="28sp"
+        android:gravity="center">
+
+        <Button
+            android:id="@+id/btnWBack4"
+            android:layout_width="120sp"
+            android:layout_height="50sp"
+            android:layout_marginTop="-1sp"
+            android:layout_marginEnd="90sp"
+            android:background="@drawable/redbtn"
+            android:fontFamily="@font/poppinsmedium"
+            android:text="@string/back" />
+
+        <Button
+            android:id="@+id/btnWNext4"
+            android:layout_width="120sp"
+            android:layout_height="50sp"
+            android:layout_marginTop="-1sp"
+            android:background="@drawable/redbtn"
+            android:fontFamily="@font/poppinsmedium"
+            android:text="@string/next" />
+    </LinearLayout>
+
+</LinearLayout>
