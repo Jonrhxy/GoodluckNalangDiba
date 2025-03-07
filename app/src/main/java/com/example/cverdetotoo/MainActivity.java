@@ -32,9 +32,6 @@ public class MainActivity extends AppCompatActivity {
             getSupportActionBar().hide();
         }
 
-        // Start the foreground service that will handle notifications.
-        Intent serviceIntent = new Intent(this, NotificationForegroundService.class);
-        ContextCompat.startForegroundService(this, serviceIntent);
 
         // Check if user is logged in
         SharedPreferences sharedPreferences = getSharedPreferences(PREFS_NAME, MODE_PRIVATE);

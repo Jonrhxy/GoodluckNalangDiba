@@ -173,11 +173,7 @@
             android:name=".Settings"
             android:exported="false" />
 
-        <!-- Foreground Service for Notifications -->
-        <service
-            android:name=".NotificationForegroundService"
-            android:enabled="true"
-            android:exported="false" />
+
 
         <!-- Additional activities from the second manifest -->
         <activity

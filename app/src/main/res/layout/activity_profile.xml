@@ -239,12 +239,13 @@
             <!-- The bubble graphic -->
             <ImageView
                 android:id="@+id/imageBubble"
-                android:layout_width="wrap_content"
+                android:layout_width="257dp"
                 android:layout_height="wrap_content"
                 android:adjustViewBounds="true"
                 android:src="@drawable/chat" />
 
-            <!-- Text on top of the bubble -->
+            <!-- Text to the bubble -->
+
             <TextView
                 android:id="@+id/textGreeting"
                 android:layout_width="wrap_content"
@@ -252,7 +253,7 @@
                 android:layout_gravity="center"
                 android:layout_marginLeft="-20sp"
                 android:layout_marginTop="-10sp"
-                android:text="Hi, Rae!"
+                android:text="Rae!"
                 android:textColor="@android:color/white"
                 android:textSize="16sp"
                 android:textStyle="bold" />

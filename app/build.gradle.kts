@@ -10,8 +10,8 @@ android {
 
     defaultConfig {
         applicationId = "com.example.cverdetotoo"
-        minSdk = 26
-        targetSdk = 35
+        minSdk = 32
+        targetSdk = 34
         versionCode = 1
         versionName = "1.0"
 

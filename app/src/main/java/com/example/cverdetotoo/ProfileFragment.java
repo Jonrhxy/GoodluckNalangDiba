@@ -10,10 +10,15 @@ import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -24,6 +29,8 @@ public class ProfileFragment extends Fragment {
     private ImageButton ivLeftArrow, ivRightArrow;
     private TextView tvMonthYear;
     private Calendar calendar;
+    private FirebaseAuth mAuth;
+    private FirebaseFirestore db;
 
     public ProfileFragment() {
         // Required empty public constructor
@@ -39,33 +46,63 @@ public class ProfileFragment extends Fragment {
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        // Initialize Firebase instances.
+        mAuth = FirebaseAuth.getInstance();
+        db = FirebaseFirestore.getInstance();
+
         // --------------------- Gift Icon Popup ---------------------
         LinearLayout giftLayout = view.findViewById(R.id.giftLayout);
         giftLayout.setOnClickListener(v -> {
             AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-            builder.setTitle("Gift");
-            builder.setMessage("You have a new gift!");
-            builder.setPositiveButton("OK", (dialog, which) -> dialog.dismiss());
-            builder.show();
+            builder.setTitle("Gift")
+                    .setMessage("You have a new gift!")
+                    .setPositiveButton("OK", (dialog, which) -> dialog.dismiss())
+                    .show();
         });
 
         // --------------------- Settings Icon Navigation ---------------------
-        // Note: We now reference the FrameLayout with the ID 'settingsLayout'
         FrameLayout settingsLayout = view.findViewById(R.id.settingsLayout);
         settingsLayout.setOnClickListener(v -> {
-            // Launch SettingsActivity (create this activity separately and add it to your manifest)
             startActivity(new Intent(getActivity(), Settings.class));
         });
 
         // --------------------- "See all" Clickable Text ---------------------
         TextView textSeeAll = view.findViewById(R.id.textSeeAll);
         textSeeAll.setOnClickListener(v -> {
-            // Replace the container with the BadgesFragment
             getActivity().getSupportFragmentManager()
                     .beginTransaction()
                     .replace(R.id.constraintLayout, new BadgesFragment())
                     .commit();
         });
+
+        // --------------------- Fetch First Name from Firestore ---------------------
+        // Get reference to the TextView where the greeting will be shown.
+        TextView textGreeting = view.findViewById(R.id.textGreeting);
+        if (mAuth.getCurrentUser() != null) {
+            // Use FirebaseUser displayName as the document ID.
+            String username = mAuth.getCurrentUser().getDisplayName();
+            if (username != null && !username.isEmpty()) {
+                DocumentReference userDocRef = db.collection("users").document(username);
+                userDocRef.get()
+                        .addOnCompleteListener(task -> {
+                            if (task.isSuccessful()) {
+                                String firstName = task.getResult().getString("firstName");
+                                if (firstName != null && !firstName.isEmpty()) {
+                                    textGreeting.setText("Hi, " + firstName + "!");
+                                } else {
+                                    textGreeting.setText("Hi!");
+                                }
+                            } else {
+                                Toast.makeText(getActivity(), "Failed to fetch user data", Toast.LENGTH_SHORT).show();
+                                textGreeting.setText("Hi!");
+                            }
+                        });
+            } else {
+                textGreeting.setText("Hi!");
+            }
+        } else {
+            textGreeting.setText("Hi, Guest!");
+        }
 
         // --------------------- Arrow Navigation for Month/Year ---------------------
         ivLeftArrow = view.findViewById(R.id.ivLeftArrow);
