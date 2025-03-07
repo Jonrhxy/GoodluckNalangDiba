@@ -26,7 +26,7 @@ public class PostAsses12 extends AppCompatActivity {
     private TextView timerTextView;
 
     // The correct answer is assumed to be prebtn1d
-    private int correctAnswerId = R.id.prebtn1d;
+    private int correctAnswerId = R.id.prebtn1b;
     private RadioGroup radioGroup;
     private Button submitButton, next11Button;
     private boolean answered = false;
@@ -104,7 +104,7 @@ public class PostAsses12 extends AppCompatActivity {
         next11Button.setOnClickListener(v -> {
             // Only proceed if answer has been submitted
             if (answered) {
-                Intent intent = new Intent(PostAsses12.this, PreAsses12.class);
+                Intent intent = new Intent(PostAsses12.this, PostAsses13.class);
                 intent.putExtra("score", score);  // Passing the cumulative score to the next activity
                 startActivity(intent);
             } else {

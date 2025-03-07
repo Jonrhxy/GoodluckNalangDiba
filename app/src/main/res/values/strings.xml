@@ -25,19 +25,10 @@
     <string name="instrucpreassess">This pre-assessment checks your prior knowledge with no time limit and <b><u>won’t affect your final score.</u></b> Click \"Start\" when ready.</string>
     <string name="start">Start</string>
     <string name="instruc">INSTRUCTIONS:</string>
-    <string name="preqeus1">What is love?</string>
     <string name="timer1">00:00</string>
     <string name="timee">\n</string>
     <string name="guideRB">Choose 1 to continue.</string>
-    <string name="preQ11a">Secret</string>
-    <string name="preQ11b">\'Di ko alam</string>
-    <string name="preQ11c">Sanaol</string>
-    <string name="preQ11d">bading si hans</string>
     <string name="submit">Submit</string>
-    <string name="preQ12a">asddad</string>
-    <string name="preQ12b">fdfsfs</string>
-    <string name="preQ12d">adsad</string>
-    <string name="preQ12c">asdad</string>
     <string name="next">NEXT</string>
     <string name="WD">Well Done!</string>
     <string name="pre1scoress">Your score is:</string>
@@ -60,5 +51,87 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="instrucPostAssess">After watching the educational video on carbon emissions, please complete the post-assessment quiz to see if you\'ve gained knowledge, with <b><u><i>the points you earn directly reflecting your understanding.</i></u></b></string>
+
+    <!-- PRE ASSES -->
+    <string name="preqeus1">What is your current level of knowledge about your carbon footprint?</string>
+    <string name="preQ11a">Renewable energy</string>
+    <string name="preQ11b"><![CDATA[Carbon dioxide & Methane Gases]]></string>
+    <string name="preQ11c">Water pollution</string>
+    <string name="preQ11d">Deforestation</string>
+    <string name="preqeus2">Which greenhouse gas is commonly associated with climate change?</string>
+    <string name="preQ12a">Oxygen</string>
+    <string name="preQ12b">Nitrogen</string>
+    <string name="preQ12c">Carbon dioxide</string>
+    <string name="preQ12d">Helium</string>
+    <string name="preqeus13">Besides carbon dioxide, which other greenhouse gas was mentioned?</string>
+    <string name="preQ13a">Helium</string>
+    <string name="preQ13b">Methane</string>
+    <string name="preQ13c">Sulfur</string>
+    <string name="preQ13d">Neon</string>
+    <string name="preqeus14">Why are greenhouse gases a concern for the planet?</string>
+    <string name="preQ14a">They clean the air</string>
+    <string name="preQ14b">They contribute to global warming</string>
+    <string name="preQ14c">They help plants grow faster</string>
+    <string name="preQ14d">They reduce water pollution</string>
+    <string name="preqeus15">What action does the video encourage viewers to take?</string>
+    <string name="preQ15a">Ignore climate change</string>
+    <string name="preQ15b">Stop recycling</string>
+    <string name="preQ15c">Increase carbon emissions</string>
+    <string name="preQ15d">Take action today</string>
+    <string name="postqeus1">Which of these is <u> NOT</u> a greenhouse gas?</string>
+    <string name="postqeus2">What is the main message of the video?</string>
+    <string name="postQ12a">Promoting fossil fuels</string>
+    <string name="postQ12b">Understanding and addressing greenhouse gas emissions</string>
+    <string name="postQ12c">Encouraging space exploration</string>
+    <string name="postQ12d">Advertising new technology</string>
+    <string name="postqeus13">Which human activity contributes most to carbon dioxide emissions?</string>
+    <string name="postQ13a">Burning fossil fuels</string>
+    <string name="postQ13b">Planting trees</string>
+    <string name="postQ13c">Recycling plastic</string>
+    <string name="postQ13d">Riding bicycles</string>
+    <string name="postqeus15">Which of these statements is true?</string>
+    <string name="postQ15a">Methane is not a greenhouse gas</string>
+    <string name="postQ15b">Carbon dioxide levels have no impact on climate</string>
+    <string name="postQ15c">Greenhouse gases contribute to global warming</string>
+    <string name="postQ15d">Climate change is caused by natural factors only</string>
+    <string name="postqeus14">Which of these is a consequence of increased greenhouse gases?</string>
+    <string name="postQ14a">Better air quality</string>
+    <string name="postQ14b">Global warming</string>
+    <string name="postQ14c">Reduced ocean levels</string>
+    <string name="postQ14d">Increased wildlife populations</string>
+
+    <!-- ERICK -->
+
+    <string-array name="transport_modes">
+        <item>Car</item>
+        <item>Bus</item>
+        <item>Motorcycle</item>
+        <item>Jeepney</item>
+        <item>Truck</item>
+    </string-array>
+
+
+    <!-- HANS -->
+
+    <string name="profile">Profile</string>
+    <string name="terms"><![CDATA[Terms & Conditions]]></string>
+    <string name="edit_profile">EDIT PROFILE</string>
+    <string name="first_name">First Name</string>
+    <string name="email">name@gmail.com</string>
+    <string name="birth_date">DD-MM-YYYY</string>
+    <string name="gender">Gender</string>
+    <string name="female">Female</string>
+    <string name="male">Male</string>
+    <string name="others">Others</string>
+    <string name="save_changes">Save Changes</string>
+    <string name="nothree">C-Verde collects and processes personal information, such as your daily activities, energy usage, and travel habits, to calculate your carbon footprint. The information is stored securely and used solely for the purpose of improving your experience with the application.  Your data will not be shared with third parties without your consent, except as required by law.\n\nWe take reasonable steps to ensure your data is protected, but no system is completely secure. By using the app, you acknowledge the risks of data breaches.</string>
+    <string name="termsandcon"><![CDATA[TERMS & CONDITIONS]]></string>
+
+
+
+    <!-- CABS -->
+    strings.xml
+    <string name="channel_name">Motivational Notifications</string>
+    <string name="channel_description">Channel for motivational notifications and facts</string>
 
 </resources>

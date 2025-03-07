@@ -31,7 +31,7 @@ public class PreAsses15 extends AppCompatActivity {
     private TextView timerTextView;
 
     // The correct answer is assumed to be prebtn1d
-    private int correctAnswerId = R.id.prebtn1b;
+    private int correctAnswerId = R.id.prebtn1c;
     private RadioGroup radioGroup;
     private Button submitButton, next11Button;
     private boolean answered = false;

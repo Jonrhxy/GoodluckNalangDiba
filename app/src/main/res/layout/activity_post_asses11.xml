@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@drawable/quesbg"
+    android:background="@drawable/postassbg"
     android:padding="16dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -25,9 +25,8 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <ImageView
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:layout_marginTop="-10sp"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
                 android:contentDescription="@string/timee"
                 app:srcCompat="@drawable/timer"/>
 
@@ -35,12 +34,12 @@
                 android:id="@+id/posttimer11"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:fontFamily="@font/afacad"
+                android:layout_gravity="center"
+                android:fontFamily="@font/afacadbolditalic"
                 android:text="@string/timer1"
-                android:textColor="@color/Green"
+                android:textColor="@color/BlckBlue"
                 android:textStyle="bold"
-                android:textSize="20sp" />
+                android:textSize="33sp" />
         </LinearLayout>
 
         <FrameLayout
@@ -54,8 +53,9 @@
 
             <ImageView
                 android:id="@+id/TransPic"
-                android:layout_width="230dp"
+                android:layout_width="350dp"
                 android:layout_height="230dp"
+                android:layout_gravity="center"
                 app:srcCompat="@drawable/homebluecurve" />
 
             <TextView
@@ -64,7 +64,8 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:fontFamily="@font/poppins_bold"
-                android:text="@string/preqeus1"
+                android:textAlignment="center"
+                android:text="@string/postqeus1"
                 android:textColor="@color/WBlue"
                 android:textSize="25sp"
                 android:textStyle="normal" />
@@ -98,86 +99,87 @@
                 android:id="@+id/prebtn1a"
                 android:layout_width="match_parent"
                 android:layout_height="52dp"
-                android:background="@drawable/choicesbg"
+                android:background="@drawable/postasschoices"
                 android:fontFamily="@font/poppinsregular"
                 android:layout_marginTop="21dp"
                 android:minHeight="48dp"
                 android:padding="12dp"
                 android:paddingStart="10dp"
-                android:text="@string/preQ11a"
-                android:textColor="#000000" />
+                android:text="@string/preQ12a"
+                android:textColor="@color/BlckBlue" />
 
             <RadioButton
                 android:id="@+id/prebtn1b"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:background="@drawable/choicesbg"
+                android:background="@drawable/postasschoices"
                 android:fontFamily="@font/poppinsregular"
                 android:minHeight="48dp"
                 android:padding="12dp"
                 android:paddingStart="10dp"
-                android:text="@string/preQ11b"
-                android:textColor="#000000" />
+                android:text="@string/preQ12b"
+                android:textColor="@color/BlckBlue" />
 
             <RadioButton
                 android:id="@+id/prebtn1c"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:background="@drawable/choicesbg"
+                android:background="@drawable/postasschoices"
                 android:fontFamily="@font/poppinsregular"
                 android:minHeight="48dp"
                 android:padding="12dp"
                 android:paddingStart="10dp"
-                android:text="@string/preQ11c"
-                android:textColor="#000000" />
+                android:text="@string/preQ12c"
+                android:textColor="@color/BlckBlue" />
 
             <RadioButton
                 android:id="@+id/prebtn1d"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:background="@drawable/choicesbg"
+                android:background="@drawable/postasschoices"
                 android:fontFamily="@font/poppinsregular"
                 android:minHeight="48dp"
                 android:padding="12dp"
                 android:paddingStart="10dp"
-                android:text="@string/preQ11d"
-                android:textColor="#000000" />
+                android:text="@string/preQ12d"
+                android:textColor="@color/BlckBlue" />
         </RadioGroup>
 
         <LinearLayout
             android:id="@+id/bttnchoice1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="18dp"
-            android:gravity="center_horizontal"
-            android:orientation="horizontal"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/radiopostQ11">
+            android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="18dp"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/radiopostQ11">
 
-            <Button
-                android:id="@+id/postq11"
-                android:layout_width="137dp"
-                android:layout_height="65dp"
-                android:background="@drawable/preassesbtn"
-                android:backgroundTint="@null"
-                android:text="@string/submit"
-                android:textSize="20sp" />
+        <Button
+            android:id="@+id/postq11"
+            android:layout_width="0dp"
+            android:layout_height="65dp"
+            android:layout_weight="1"
+            android:background="@drawable/preassesbtn"
+            android:text="@string/submit"
+            android:textSize="20sp" />
 
-            <Button
-                android:id="@+id/postnext11"
-                android:layout_width="137dp"
-                android:layout_height="65dp"
-                android:layout_marginStart="30sp"
-                android:background="@drawable/preassesbtn2"
-                android:text="@string/next"
-                android:textSize="20sp"
-                android:backgroundTint="@null" />
+        <Button
+            android:id="@+id/postnext11"
+            android:layout_width="0dp"
+            android:layout_height="65dp"
+            android:layout_marginStart="30dp"
+            android:layout_weight="1"
+            android:background="@drawable/preassesbtn"
+            android:text="@string/next"
+             android:textSize="20sp" />
 
-        </LinearLayout>
+    </LinearLayout>
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

@@ -1,6 +1,7 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.google.gms.google.services)
+    alias(libs.plugins.kotlin.android)
 }
 
 android {
@@ -26,6 +27,7 @@ android {
             )
         }
     }
+
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
@@ -39,7 +41,6 @@ android {
 }
 
 dependencies {
-
     // Core dependencies
     implementation(libs.appcompat)
     implementation(libs.material)
@@ -47,7 +48,6 @@ dependencies {
     implementation(libs.constraintlayout)
     implementation(libs.recyclerview)
     implementation(libs.cardview)
-    implementation("com.google.android.material:material:1.11.0")
 
     // Firebase dependencies
     implementation(platform("com.google.firebase:firebase-bom:33.5.1"))
@@ -59,8 +59,7 @@ dependencies {
 
     // Play Services
     implementation("com.google.android.gms:play-services-auth:21.2.0")
-    implementation ("com.google.android.gms:play-services-location:21.3.0")
-
+    implementation("com.google.android.gms:play-services-location:21.3.0")
     implementation(libs.play.services.location)
 
     // ML Kit
@@ -80,6 +79,15 @@ dependencies {
     // Charting Library
     implementation("com.github.PhilJay:MPAndroidChart:3.1.0")
     implementation(libs.navigation.fragment)
+
+    // WorkManager for background notifications
+    implementation("androidx.work:work-runtime:2.8.1")
+
+    // OSMDroid dependency
+    implementation(libs.osmdroid.android)
+
+    // Guava dependency for ListenableFuture
+    implementation("com.google.guava:guava:31.1-android")
 
     // Testing dependencies
     testImplementation(libs.junit)
