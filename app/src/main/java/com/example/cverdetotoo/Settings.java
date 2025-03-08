@@ -1,16 +1,33 @@
 package com.example.cverdetotoo;
 
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
+
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.SetOptions;
+
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
+
+import static com.example.cverdetotoo.MainActivity.PREFS_NAME;
+import static com.example.cverdetotoo.MainActivity.PREF_IS_LOGGED_IN;
 
 public class Settings extends AppCompatActivity {
 
@@ -22,7 +39,7 @@ public class Settings extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_settings); // Ensure this matches your XML filename
+        setContentView(R.layout.activity_settings);
 
         // Initialize the views
         ivBack = findViewById(R.id.ivBack);
@@ -31,8 +48,6 @@ public class Settings extends AppCompatActivity {
         cardAboutUs = findViewById(R.id.cardAboutUs);
         cardDeleteAccount = findViewById(R.id.cardDeleteAccount);
         btnLogout = findViewById(R.id.btnLogout);
-
-        // Set click listeners for each element
 
         // Back arrow: simply finish the activity
         ivBack.setOnClickListener(new View.OnClickListener() {
@@ -51,7 +66,7 @@ public class Settings extends AppCompatActivity {
             }
         });
 
-        // Terms & Conditions: navigate to TermsConditionsActivity
+        // Terms & Conditions: navigate to TermsAndCon activity
         cardTermsConditions.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -60,7 +75,7 @@ public class Settings extends AppCompatActivity {
             }
         });
 
-        // About Us: navigate to AboutUsActivity
+        // About Us: navigate to AboutUs activity
         cardAboutUs.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -69,11 +84,11 @@ public class Settings extends AppCompatActivity {
             }
         });
 
-        // Delete Account: show a confirmation dialog before deleting the account
+        // Delete Account: schedule deletion (save deletion schedule to Firestore using username as document ID)
         cardDeleteAccount.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                showDeleteAccountDialog();
+                confirmAndScheduleDeletion();
             }
         });
 
@@ -87,16 +102,18 @@ public class Settings extends AppCompatActivity {
     }
 
     /**
-     * Show a confirmation dialog before deleting the user account.
+     * Displays a confirmation dialog to schedule account deletion.
      */
-    private void showDeleteAccountDialog() {
+    private void confirmAndScheduleDeletion() {
         new AlertDialog.Builder(this)
-                .setTitle("Delete Account")
-                .setMessage("Are you sure you want to delete your account? This action cannot be undone.")
-                .setPositiveButton("Delete", new DialogInterface.OnClickListener() {
+                .setTitle("Schedule Account Deletion")
+                .setMessage("Do you want to schedule your account for deletion in 30 days? " +
+                        "This will save a deletion schedule in Firestore using your username. " +
+                        "You can cancel by signing in before then.")
+                .setPositiveButton("Schedule Deletion", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        deleteAccount();
+                        scheduleAccountDeletion();
                     }
                 })
                 .setNegativeButton("Cancel", null)
@@ -104,24 +121,76 @@ public class Settings extends AppCompatActivity {
     }
 
     /**
-     * Delete the user account.
-     * (Implement your account deletion logic here)
+     * Schedules deletion by saving a deletion timestamp (30 days from now) and a flag into Firestore.
+     * The document is stored under the "users" collection using the user's username (display name) as the document ID.
      */
-    private void deleteAccount() {
-        // Sample feedback - replace with your own account deletion logic
-        Toast.makeText(this, "Account deleted", Toast.LENGTH_SHORT).show();
-        // Optionally, log the user out after deleting the account
-        logoutUser();
+    private void scheduleAccountDeletion() {
+        FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
+        if (currentUser == null) {
+            Toast.makeText(Settings.this, "No user is currently signed in.", Toast.LENGTH_LONG).show();
+            return;
+        }
+
+        // Use username (display name) instead of userId
+        String username = currentUser.getDisplayName();
+        if (username == null || username.isEmpty()) {
+            Toast.makeText(Settings.this, "Username not available. Cannot schedule deletion.", Toast.LENGTH_LONG).show();
+            return;
+        }
+
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+
+        // Calculate deletion date: 30 days from now
+        long delayMillis = 30L * 24 * 60 * 60 * 1000; // 30 days in milliseconds
+        Date deletionDate = new Date(System.currentTimeMillis() + delayMillis);
+
+        // Data to save: deletion timestamp and flag
+        Map<String, Object> data = new HashMap<>();
+        data.put("scheduledDeletion", deletionDate);
+        data.put("deletionScheduled", true);
+
+        // Save the schedule to Firestore using set() with merge options,
+        // storing the document under the "users" collection using the username as the document ID.
+        db.collection("users").document(username)
+                .set(data, SetOptions.merge())
+                .addOnSuccessListener(new com.google.android.gms.tasks.OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        Toast.makeText(Settings.this, "Account scheduled for deletion on: " + deletionDate.toString(), Toast.LENGTH_LONG).show();
+                        logoutUser();
+                    }
+                })
+                .addOnFailureListener(new com.google.android.gms.tasks.OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Toast.makeText(Settings.this, "Failed to schedule deletion: " + e.getMessage(), Toast.LENGTH_LONG).show();
+                    }
+                });
     }
 
     /**
-     * Log out the user and navigate to the login screen.
+     * Logs out the user and navigates to MainActivity.
      */
     private void logoutUser() {
-        // Implement your logout logic (e.g., clearing session data) here
-        Toast.makeText(this, "Logged out", Toast.LENGTH_SHORT).show();
-        Intent intent = new Intent(Settings.this, Settings.class);
+        // Sign out from Firebase Authentication
+        FirebaseAuth.getInstance().signOut();
+
+        // Sign out from Google
+        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                .requestIdToken(getString(R.string.default_web_client_id))
+                .requestEmail()
+                .build();
+        GoogleSignIn.getClient(Settings.this, gso).signOut();
+
+        // Update shared preferences
+        SharedPreferences preferences = getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.putBoolean(PREF_IS_LOGGED_IN, false);
+        editor.apply();
+
+        // Navigate to MainActivity
+        Intent intent = new Intent(Settings.this, MainActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(intent);
-        finish();
     }
 }

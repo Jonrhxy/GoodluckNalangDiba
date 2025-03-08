@@ -142,6 +142,23 @@
     <string name="food">Food</string>
     <string name="heard">Have you heard?</string>
     <string name="welcome5">We can reduce our carbon footprint by using public transport, saving energy, reducing waste, choosing sustainable food, and planting trees.</string>
+    <string name="user">nnnn</string>
+
+
+    <!-- PROFILE -->
+    <string name="seeall"><u>See All</u></string>
+    <string name="ecorookiepic">\n</string>
+    <string name="badge1">\n</string>
+    <string name="EcoRookie">ECO ROOKIE ❅</string>
+    <string name="EcoRookieDesc">Awarded at 100 points, marking the start of your eco-friendly journey.</string>
+    <string name="badge2de">\n</string>
+    <string name="EcoProtec">ECO PROTECTOR ♡</string>
+    <string name="delpass">Delete Password</string>
+    <string name="DeletePass">Delete Password</string>
+    <string name="delacc">Delete Account</string>
+    <string name="aboutus">About Us</string>
+    <string name="editprof">Edit Profile</string>
+    <string name="delpic">\n</string>
 
 
 </resources>

@@ -20,8 +20,8 @@ public class MainActivity extends AppCompatActivity {
     public static long lastBackgroundTime = 0;
 
     private Button getstartbtn;
-    private static final String PREFS_NAME = "loginPrefs";
-    private static final String PREF_IS_LOGGED_IN = "isLoggedIn";
+    public static final String PREFS_NAME = "loginPrefs";
+    public static final String PREF_IS_LOGGED_IN = "isLoggedIn";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

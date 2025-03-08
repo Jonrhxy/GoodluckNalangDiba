@@ -86,7 +86,8 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:layout_marginStart="8dp"
-                    android:text="Edit Profile"
+                    android:fontFamily="@font/poppinsmedium"
+                    android:text="@string/editprof"
                     android:textColor="@android:color/black"
                     android:textSize="16sp" />
 
@@ -132,6 +133,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:layout_marginStart="8dp"
+                    android:fontFamily="@font/poppinsmedium"
                     android:text="@string/terms"
                     android:textColor="@android:color/black"
                     android:textSize="16sp" />
@@ -178,7 +180,55 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:layout_marginStart="8dp"
-                    android:text="About Us"
+                    android:fontFamily="@font/poppinsmedium"
+                    android:text="@string/aboutus"
+                    android:textColor="@android:color/black"
+                    android:textSize="16sp" />
+
+                <ImageView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:src="@drawable/rightarrow"
+                    android:tintMode="src_in"
+                    app:tint="@android:color/black"
+                    android:contentDescription="Right Arrow"/>
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <!-- Delete Password Card -->
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardDeletePass"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="8dp"
+            app:cardElevation="4dp"
+            app:cardBackgroundColor="@android:color/white"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="16dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:padding="12dp">
+
+                <ImageView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:src="@drawable/trash"
+                    android:contentDescription="@string/delpic"/>
+
+                <TextView
+                    android:id="@+id/tvDeletePass"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginStart="8dp"
+                    android:fontFamily="@font/poppinsmedium"
+                    android:text="@string/DeletePass"
                     android:textColor="@android:color/black"
                     android:textSize="16sp" />
 
@@ -224,7 +274,8 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:layout_marginStart="8dp"
-                    android:text="Delete Account"
+                    android:fontFamily="@font/poppinsmedium"
+                    android:text="@string/delacc"
                     android:textColor="@android:color/black"
                     android:textSize="16sp" />
 
@@ -237,6 +288,8 @@
                     android:contentDescription="Right Arrow"/>
             </LinearLayout>
         </androidx.cardview.widget.CardView>
+
+
 
         <!-- LOGOUT BUTTON INSIDE THE SAME CONTAINER -->
         <FrameLayout

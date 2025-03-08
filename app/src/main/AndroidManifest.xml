@@ -30,6 +30,15 @@
         android:theme="@style/Theme.CVERDETOTOO"
         tools:targetApi="31">
         <activity
+            android:name=".videoQCU"
+            android:exported="false" />
+        <!-- Foreground Service for Notifications -->
+        <service
+            android:name=".NotificationForegroundService"
+            android:enabled="true"
+            android:exported="false" />
+
+        <activity
             android:name=".popupWelcome5"
             android:exported="false" />
         <activity

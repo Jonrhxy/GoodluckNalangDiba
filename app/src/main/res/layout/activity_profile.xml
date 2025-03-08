@@ -233,30 +233,20 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="top|start"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp">
-
-            <!-- The bubble graphic -->
-            <ImageView
-                android:id="@+id/imageBubble"
-                android:layout_width="257dp"
-                android:layout_height="wrap_content"
-                android:adjustViewBounds="true"
-                android:src="@drawable/chat" />
-
-            <!-- Text to the bubble -->
+            android:layout_marginStart="25dp"
+            android:layout_marginTop="45dp">
 
             <TextView
                 android:id="@+id/textGreeting"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginLeft="-20sp"
-                android:layout_marginTop="-10sp"
-                android:text="Rae!"
-                android:textColor="@android:color/white"
+                android:layout_width="100sp"
+                android:layout_height="70sp"
+                android:text="@string/user"
+                android:gravity="center"
+                android:background="@drawable/bubble"
+                android:textColor="@color/BlckYellow"
                 android:textSize="16sp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                tools:ignore="HardcodedText" />
         </FrameLayout>
     </FrameLayout>
 
@@ -305,8 +295,13 @@
                 android:id="@+id/textSeeAll"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="See all"
-                android:textSize="16sp"
+                android:fontFamily="@font/poppins_semibold_italic"
+                android:text="@string/seeall"
+                android:layout_marginEnd="15sp"
+                android:layout_marginTop="-5sp"
+                android:textSize="18sp"
+                android:clickable="true"
+                android:focusable="true"
                 android:textColor="@android:color/white"/>
         </LinearLayout>
 

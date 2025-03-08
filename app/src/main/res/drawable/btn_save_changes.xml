@@ -1,35 +1,26 @@
-<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
 
-    <!-- Shadow layer (behind the button) -->
-    <item
-        android:left="4dp"
-        android:top="4dp">
-        <shape>
-            <!-- Semi-transparent black for the shadow color -->
-            <solid android:color="#44000000" />
+    <!-- Gradient from red (#FF0000) to black (#000000) -->
+    <gradient
+        android:startColor="#1D74B3"
+        android:endColor="#00215E"
+        android:angle="0" />
+    <!--
+         android:angle="0" -> left to right
+         android:angle="90" -> top to bottom
+         etc.
+    -->
 
-            <!-- Same corner radius as the main shape -->
-            <corners android:radius="24dp" />
-        </shape>
-    </item>
+    <!-- Optional: Rounded corners -->
+    <corners android:radius="20dp" />
 
-    <!-- Main button layer (the gradient) -->
-    <item>
-        <shape>
-            <gradient
-                android:startColor="#2196F3"
-            android:endColor="#1976D2"
-            android:angle="0" />
-
-            <corners android:radius="24dp" />
-
-            <!-- Optional internal padding for content -->
-            <padding
-                android:left="16dp"
-                android:right="16dp"
-                android:top="8dp"
-                android:bottom="8dp" />
-        </shape>
-    </item>
-
-</layer-list>
+    <!-- Optional: Add padding inside the shape -->
+    <padding
+        android:left="10dp"
+        android:top="10dp"
+        android:right="10dp"
+        android:bottom="10dp" />
+    <stroke android:color="#16367B" android:width="3dp"/>
+</shape>

@@ -1,3 +1,4 @@
+
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -5,7 +6,7 @@
     android:id="@+id/layout_edit_profile"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/leaderboardsbg"
+    android:background="@drawable/aboutssbg"
     tools:context=".EditProfile">
 
     <!-- Top bar (you can style it however you want) -->
@@ -32,10 +33,11 @@
             android:id="@+id/tvTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins_bold"
             android:text="@string/edit_profile"
             android:textColor="@android:color/white"
-            android:textSize="25sp"
-            android:layout_marginStart="85dp"
+            android:textSize="30sp"
+            android:layout_marginStart="75dp"
             android:layout_gravity="center_vertical" />
     </LinearLayout>
 
@@ -67,9 +69,11 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="First Name"
+                    android:layout_marginTop="35sp"
+                    android:fontFamily="@font/poppins_semibold"
+                    android:text="@string/Firstname"
                     android:textSize="20sp"
-                    android:textColor="#000000"
+                    android:textColor="@color/BlckBlue"
                     android:textStyle="bold"
                     android:layout_marginBottom="4dp"/>
 
@@ -77,7 +81,8 @@
                 <EditText
                     android:id="@+id/etFirstName"
                     android:layout_width="match_parent"
-                    android:layout_height="40sp"
+                    android:layout_height="50sp"
+                    android:textColor="@color/BlckYellow"
                     android:padding="12dp"
                     android:background="@drawable/edit_text_background"/>
             </LinearLayout>
@@ -91,16 +96,19 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Last Name"
+                    android:layout_marginTop="35sp"
+                    android:fontFamily="@font/poppins_semibold"
+                    android:text="@string/Lastname"
                     android:textSize="20sp"
-                    android:textColor="#000000"
+                    android:textColor="@color/BlckBlue"
                     android:textStyle="bold"
                     android:layout_marginBottom="4dp"/>
                 <EditText
                     android:id="@+id/etLastName"
                     android:layout_width="match_parent"
-                    android:layout_height="40sp"
+                    android:layout_height="50sp"
                     android:layout_marginTop="3dp"
+                    android:textColor="@color/BlckYellow"
                     android:padding="12dp"
                     android:background="@drawable/edit_text_background" />
             </LinearLayout>
@@ -110,20 +118,25 @@
                 android:layout_width="320sp"
                 android:layout_height="match_parent"
                 android:orientation="vertical">
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Username"
+                    android:layout_marginTop="35sp"
+                    android:fontFamily="@font/poppins_semibold"
+                    android:text="@string/Username"
                     android:textSize="20sp"
-                    android:textColor="#000000"
+                    android:textColor="@color/BlckBlue"
                     android:textStyle="bold"
                     android:layout_marginBottom="4dp"/>
+
                 <EditText
                     android:id="@+id/etUsername"
                     android:layout_width="match_parent"
-                    android:layout_height="40sp"
+                    android:layout_height="50sp"
                     android:layout_marginTop="3dp"
                     android:padding="12dp"
+                    android:textColor="@color/BlckYellow"
                     android:background="@drawable/edit_text_background" />
             </LinearLayout>
 
@@ -135,21 +148,25 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Email"
+                    android:layout_marginTop="35sp"
+                    android:fontFamily="@font/poppins_semibold"
+                    android:text="@string/Email"
                     android:textSize="20sp"
-                    android:textColor="#000000"
+                    android:textColor="@color/BlckBlue"
                     android:textStyle="bold"
                     android:layout_marginBottom="4dp"/>
                 <EditText
                     android:id="@+id/etEmail"
                     android:layout_width="match_parent"
-                    android:layout_height="40sp"
+                    android:layout_height="50sp"
                     android:hint="@string/email"
+                    android:textColor="@color/BlckYellow"
                     android:inputType="textEmailAddress"
                     android:layout_marginTop="4dp"
                     android:padding="12dp"
                     android:background="@drawable/edit_text_background" />
             </LinearLayout>
+
             <!-- Birth date -->
             <LinearLayout
                 android:layout_width="320sp"
@@ -158,6 +175,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="35sp"
                     android:text="Birth date"
                     android:textSize="20sp"
                     android:textColor="#000000"
@@ -168,6 +186,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/birth_date"
+                    android:textColor="@color/BlckYellow"
                     android:inputType="date"
                     android:layout_marginTop="8dp"
                     android:padding="12dp"
@@ -180,9 +199,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/gender"
+                android:layout_gravity="left"
+                android:layout_marginStart="25sp"
                 android:textStyle="bold"
                 android:textSize="20sp"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="35sp"
                 android:textColor="@android:color/black" />
 
             <!-- Container with rounded corners background -->
@@ -246,6 +267,31 @@
                 </RadioGroup>
             </LinearLayout>
 
+            <!-- RESET PASS -->
+            <LinearLayout
+                android:layout_width="320sp"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="35sp"
+                    android:fontFamily="@font/poppins_semibold"
+                    android:text="@string/delpass"
+                    android:textSize="20sp"
+                    android:textColor="@color/BlckBlue"
+                    android:textStyle="bold"
+                    android:layout_marginBottom="4dp"/>
+                <EditText
+                    android:id="@+id/etDelPass"
+                    android:layout_width="match_parent"
+                    android:layout_height="50sp"
+                    android:textColor="@color/BlckYellow"
+                    android:inputType="textEmailAddress"
+                    android:layout_marginTop="4dp"
+                    android:padding="12dp"
+                    android:background="@drawable/edit_text_background" />
+            </LinearLayout>
 
             <!-- Save Changes button -->
             <TextView
