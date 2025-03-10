@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="8dp"
+    app:cardCornerRadius="12dp"
+    app:cardElevation="6dp"
+    app:cardUseCompatPadding="true"
+    app:cardBackgroundColor="#CC000000"> <!-- Semi-transparent black -->
+
+    <!-- Main container for image, text, and button -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="8dp">
+
+        <!-- Character Image -->
+        <ImageView
+            android:id="@+id/imageCharacter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:adjustViewBounds="true"
+            android:maxWidth="60dp"
+            android:maxHeight="60dp"
+            android:scaleType="fitCenter"
+            android:src="@drawable/main_character" />
+
+        <!-- Vertical layout for name & cost -->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:layout_marginStart="8dp"
+            android:gravity="center_vertical">
+
+            <!-- Character Name -->
+            <TextView
+                android:id="@+id/textName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Character Name"
+                android:textSize="16sp"
+                android:textColor="#FFFFFF"
+                android:textStyle="bold" />
+
+            <!-- Character Cost -->
+            <TextView
+                android:id="@+id/textCost"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Cost: 100 coins"
+                android:textSize="14sp"
+                android:textColor="#CCCCCC" />
+        </LinearLayout>
+
+        <!-- Action Button (Buy / Equip / Equipped) -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/buttonAction"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Buy"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+            android:layout_gravity="center_vertical"
+            android:layout_marginStart="8dp"
+            android:textAllCaps="false"/>
+    </LinearLayout>
+</com.google.android.material.card.MaterialCardView>

@@ -10,7 +10,7 @@ android {
 
     defaultConfig {
         applicationId = "com.example.cverdetotoo"
-        minSdk = 32
+        minSdk = 26
         targetSdk = 34
         versionCode = 1
         versionName = "1.0"
@@ -56,6 +56,9 @@ dependencies {
     implementation("com.google.firebase:firebase-database")
     implementation("com.google.firebase:firebase-messaging")
     implementation("com.google.firebase:firebase-storage")
+
+    //Gson
+    implementation ("com.google.code.gson:gson:2.8.9")
 
     // Play Services
     implementation("com.google.android.gms:play-services-auth:21.2.0")

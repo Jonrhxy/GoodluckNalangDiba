@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+
+    <!-- Linear gradient from pinkish-red (top) to purple (bottom). -->
+    <gradient
+        android:startColor="#721E18"
+        android:endColor="#603F3D"
+        android:angle="990"
+
+    />
+</shape>

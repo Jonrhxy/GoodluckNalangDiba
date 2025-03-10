@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/miniShopRoot"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/shop_background_gradient">
+
+    <!--
+         Banner flush to the edges (no parent padding).
+         The combination of wrap_content height + adjustViewBounds + fitCenter
+         ensures the image keeps its aspect ratio without distortion.
+    -->
+    <ImageView
+        android:id="@+id/shopBannerImage"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:adjustViewBounds="true"
+        android:scaleType="fitCenter"
+        android:src="@drawable/shop_banner"
+        android:contentDescription="Shop Banner" />
+
+    <!--
+         A nested layout that holds your shop title, coins, and RecyclerView.
+         This layout has padding so the content is nicely spaced away from edges.
+    -->
+    <LinearLayout
+        android:id="@+id/shopContentLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <!-- Shop Title -->
+        <TextView
+            android:id="@+id/textShopTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Eco Heroes Marketplace"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:textColor="@android:color/white"
+            android:layout_gravity="center"
+            android:layout_marginTop="16dp" />
+
+        <!-- User Coins -->
+        <TextView
+            android:id="@+id/textUserCoins"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Coins: 0"
+            android:textSize="18sp"
+            android:textColor="@android:color/white"
+            android:layout_marginTop="8dp"
+            android:layout_gravity="center" />
+
+        <!-- RecyclerView for Characters -->
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerCharacters"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp" />
+
+    </LinearLayout>
+</LinearLayout>

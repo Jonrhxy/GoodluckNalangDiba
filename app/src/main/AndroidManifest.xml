@@ -29,6 +29,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.CVERDETOTOO"
         tools:targetApi="31">
+        <activity android:name=".MiniShopActivity" />
         <activity
             android:name=".videoQCU"
             android:exported="false" />

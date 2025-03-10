@@ -21,7 +21,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 
-import com.example.cverdetotoo.R;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -62,8 +61,10 @@ public class HomeFragment extends Fragment {
                     public void onActivityResult(ActivityResult result) {
                         if (result.getResultCode() == Activity.RESULT_OK) {
                             // Launch video1 activity after successful PreAssess.
-                            Intent videoIntent = new Intent(getActivity(), video1.class);
-                            startActivity(videoIntent);
+                            if(getActivity() != null) {
+                                Intent videoIntent = new Intent(getActivity(), video1.class);
+                                startActivity(videoIntent);
+                            }
                         }
                     }
                 }
@@ -76,22 +77,28 @@ public class HomeFragment extends Fragment {
         vid1Card.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getActivity(), PreAssess1.class);
-                preAssessLauncher.launch(intent);
+                if(getActivity() != null) {
+                    Intent intent = new Intent(getActivity(), PreAssess1.class);
+                    preAssessLauncher.launch(intent);
+                }
             }
         });
         vid2Card.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getActivity(), PreAssess2.class);
-                preAssessLauncher.launch(intent);
+                if(getActivity() != null) {
+                    Intent intent = new Intent(getActivity(), PreAssess2.class);
+                    preAssessLauncher.launch(intent);
+                }
             }
         });
         vid4Card.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getActivity(), videoQCU.class);
-                preAssessLauncher.launch(intent);
+                if(getActivity() != null) {
+                    Intent intent = new Intent(getActivity(), videoQCU.class);
+                    preAssessLauncher.launch(intent);
+                }
             }
         });
 
@@ -104,29 +111,37 @@ public class HomeFragment extends Fragment {
         trivia1Card.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent triviaIntent = new Intent(getActivity(), StoryActivity11.class);
-                startActivity(triviaIntent);
+                if(getActivity() != null) {
+                    Intent triviaIntent = new Intent(getActivity(), StoryActivity11.class);
+                    startActivity(triviaIntent);
+                }
             }
         });
         trivia2Card.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent triviaIntent = new Intent(getActivity(), StoryActivity22.class);
-                startActivity(triviaIntent);
+                if(getActivity() != null) {
+                    Intent triviaIntent = new Intent(getActivity(), StoryActivity22.class);
+                    startActivity(triviaIntent);
+                }
             }
         });
         trivia3Card.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent triviaIntent = new Intent(getActivity(), StoryActivity33.class);
-                startActivity(triviaIntent);
+                if(getActivity() != null) {
+                    Intent triviaIntent = new Intent(getActivity(), StoryActivity33.class);
+                    startActivity(triviaIntent);
+                }
             }
         });
         trivia4Card.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent triviaIntent = new Intent(getActivity(), StoryActivity44.class);
-                startActivity(triviaIntent);
+                if(getActivity() != null) {
+                    Intent triviaIntent = new Intent(getActivity(), StoryActivity44.class);
+                    startActivity(triviaIntent);
+                }
             }
         });
 
@@ -163,8 +178,12 @@ public class HomeFragment extends Fragment {
                             Log.d(TAG, "Popup already shown for username: " + username);
                         } else {
                             Log.d(TAG, "Popup not shown yet for username: " + username + ". Launching popup.");
-                            Intent intent = new Intent(getActivity(), popupWelcome.class);
-                            startActivity(intent);
+                            if (isAdded() && getActivity() != null) {
+                                Intent intent = new Intent(getActivity(), popupWelcome.class);
+                                startActivity(intent);
+                            } else {
+                                Log.e(TAG, "Fragment not attached. Cannot launch popup.");
+                            }
                             popupRef.set(Collections.singletonMap("popup5", true));
                         }
                     }
@@ -173,9 +192,10 @@ public class HomeFragment extends Fragment {
                     @Override
                     public void onFailure(@NonNull Exception e) {
                         Log.e(TAG, "Error fetching popup data.", e);
-                        // Fallback: show the popup and update Firestore.
-                        Intent intent = new Intent(getActivity(), popupWelcome.class);
-                        startActivity(intent);
+                        if (isAdded() && getActivity() != null) {
+                            Intent intent = new Intent(getActivity(), popupWelcome.class);
+                            startActivity(intent);
+                        }
                         popupRef.set(Collections.singletonMap("popup5", true));
                     }
                 });
@@ -215,6 +235,7 @@ public class HomeFragment extends Fragment {
      * Shows a prompt asking whether to continue with deletion or cancel it.
      */
     private void showDeletionPrompt() {
+        if(getActivity() == null) return;
         new AlertDialog.Builder(getActivity())
                 .setTitle("Account Deletion Scheduled")
                 .setMessage("Your account is scheduled for deletion. Do you want to continue with deletion or cancel it?")
@@ -266,14 +287,15 @@ public class HomeFragment extends Fragment {
                 .build();
         GoogleSignIn.getClient(getActivity(), gso).signOut();
 
-        Intent intent = new Intent(getActivity(), MainActivity.class);
-        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-        startActivity(intent);
+        if(getActivity() != null) {
+            Intent intent = new Intent(getActivity(), MainActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            startActivity(intent);
+        }
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
         // Hide the action bar for this fragment.
         AppCompatActivity activity = (AppCompatActivity) requireActivity();
         if (activity.getSupportActionBar() != null) {
