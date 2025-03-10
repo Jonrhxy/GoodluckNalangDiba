@@ -1115,7 +1115,7 @@ public class BattleEcoActivity extends AppCompatActivity {
                 showNpcDialogue("The Pollution Boss emerges! Hurry, the clock is ticking.", true);
                 break;
             case 2:
-                showNpcDialogue("The Sea Trash Boss has arrived! Beat it before the 5 minutes are up.", true);
+                showNpcDialogue("The Volcanic Boss has arrived! Beat it before the 5 minutes are up.", true);
                 break;
             default:
                 break;
